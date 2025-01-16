@@ -1,13 +1,20 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
+import useAuth from "../hooks/useAuth";
 
 const Header = () => {
-  const navlinks = (
+  const {user} = useAuth();
+  console.log(user)
+  const middleLinks = (
     <>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/classes">Classes</NavLink>
       <NavLink to="/trainers">Trainers</NavLink>
       <NavLink to="/community">Community</NavLink>
-     
+      {user?<NavLink to="/dashboard">Dashboard</NavLink>:''}
+        
+
     </>
   );
   return (
@@ -16,7 +23,7 @@ const Header = () => {
         <div>
           <h3 className="text-2xl medium text-gray-800">fitStat</h3>
         </div>
-        <ul className="flex gap-4 items-center ">{navlinks}
+        <ul className="flex gap-4 items-center ">{middleLinks}
         </ul>
         <div>
         <NavLink to="/login">Login</NavLink>

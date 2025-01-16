@@ -6,6 +6,13 @@ import Trainers from "../pages/Trainers/Trainers";
 import Community from "../pages/Community/Community";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import Dashboard from "../layouts/Dashboard";
+import Balance from "../pages/Dashboard/Balance/Balance";
+import AllTrainers from "../pages/Dashboard/AllTrainers/AllTrainers";
+import AppliedTrainers from "../pages/Dashboard/AppliedTrainers/AppliedTrainers";
+import AddClass from "../pages/Dashboard/AddClass/AddClass";
+import Subscribers from "../pages/Dashboard/Subscribers/Subscribers";
+
 
 const Router = createBrowserRouter([
     {
@@ -35,6 +42,32 @@ const Router = createBrowserRouter([
             {
                 path:'/register',
                 element:<Register/>
+            },
+        ]
+    },
+    {
+        path:'/dashboard',
+        element:<Dashboard/>,
+        children: [
+            {
+                path:'/dashboard/balance',
+                element:<Balance/>
+            },
+            {
+                path:'/dashboard/all-trainers',
+                element:<AllTrainers/>
+            },
+            {
+                path:'/dashboard/subscribers',
+                element:<Subscribers/>
+            },
+            {
+                path:'/dashboard/applied-trainers',
+                element:<AppliedTrainers/>
+            },
+            {
+                path:'/dashboard/add-class',
+                element:<AddClass/>
             },
         ]
     }
