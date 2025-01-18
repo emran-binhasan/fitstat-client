@@ -14,7 +14,7 @@ import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import Subscribers from "../pages/Dashboard/Subscribers/Subscribers";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import ApplyForTrainer from "../pages/Trainers/ApplyForTrainer";
+import TrainerForm from "../pages/Trainers/TrainerForm";
 
 
 const Router = createBrowserRouter([
@@ -48,7 +48,7 @@ const Router = createBrowserRouter([
             },
             {
                 path:'/trainers/apply',
-                element:<ApplyForTrainer/>
+                element:<PrivateRoute><TrainerForm/></PrivateRoute>
             },
         ]
     },

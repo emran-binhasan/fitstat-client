@@ -1,11 +1,13 @@
-import React from 'react';
+
 import TrainerBanner from './TrainerBanner';
 
 const Trainers = () => {
     return (
        
          <>
+            <div className='my-20'>
             <TrainerBanner/>
+            </div>
          </>
     );
 };

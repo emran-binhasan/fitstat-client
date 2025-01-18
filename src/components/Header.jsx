@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import useAuth from "../hooks/useAuth";
+import useTheUser from "../hooks/useTheUser";
+import axios from "axios";
 
 const Header = () => {
   const {user,logOutUser} = useAuth();
-  
   const middleLinks = (
     <>
       <NavLink to="/">Home</NavLink>
@@ -18,7 +19,7 @@ const Header = () => {
     </>
   );
   return (
-    <header className="bg-gray-300/40 fixed z-50 w-full">
+    <header className="bg-gray-300/40  z-50 w-full">
       <div className="flex p-4 mx-8 justify-between items-center ">
         <div>
           <h3 className="text-2xl medium text-gray-800">fitStat</h3>
