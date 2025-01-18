@@ -16,7 +16,7 @@ const Dashboard = () => {
       <ul className="flex flex-col dashboard-ul px-4 space-y-4 ">
         {isAdmin && 
         <>
-        <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/home-admin"><IoHomeOutline className="text-xl"/> Home Admin</NavLink>
+        {/* <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/home-admin"><IoHomeOutline className="text-xl"/> Home Admin</NavLink> */}
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/balance"><FaMoneyCheck /> Balance</NavLink>
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/subscribers"><MdOutlineUnsubscribe /> Subscribers</NavLink>
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/all-trainers"><IoPeople /> All Trainers</NavLink>
@@ -25,7 +25,7 @@ const Dashboard = () => {
         </>}
         {isTrainer && 
         <>
-        <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/home-trainer"><IoHomeOutline className="text-xl"/> Home Trainer</NavLink>
+        {/* <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/home-trainer"><IoHomeOutline className="text-xl"/> Home Trainer</NavLink> */}
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/slots"><FaMoneyCheck /> Manage Slots</NavLink>
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/add-slot"><MdOutlineUnsubscribe />Add Slots</NavLink>
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/add-forum"><IoPeople /> Add Forum</NavLink>

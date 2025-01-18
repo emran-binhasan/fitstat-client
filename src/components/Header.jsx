@@ -4,8 +4,8 @@ import { AuthContext } from "../context/AuthProvider";
 import useAuth from "../hooks/useAuth";
 
 const Header = () => {
-  const {user} = useAuth();
-  console.log(user)
+  const {user,logOutUser} = useAuth();
+  
   const middleLinks = (
     <>
       <NavLink to="/">Home</NavLink>
@@ -26,7 +26,10 @@ const Header = () => {
         <ul className="flex gap-4 items-center nav-middle">{middleLinks}
         </ul>
         <div className="nav-left">
-        <NavLink to="/login">Login</NavLink>
+        {user?
+        <><button onClick={logOutUser}>LogOut</button></>
+        :
+        <><NavLink to="/login">Login</NavLink></>}
         </div>
       </div>
     </header>

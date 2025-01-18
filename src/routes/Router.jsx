@@ -12,6 +12,7 @@ import AllTrainers from "../pages/Dashboard/AllTrainers/AllTrainers";
 import AppliedTrainers from "../pages/Dashboard/AppliedTrainers/AppliedTrainers";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import Subscribers from "../pages/Dashboard/Subscribers/Subscribers";
+import PrivateRoute from "./PrivateRoute";
 
 
 const Router = createBrowserRouter([
@@ -47,7 +48,7 @@ const Router = createBrowserRouter([
     },
     {
         path:'/dashboard',
-        element:<Dashboard/>,
+        element:<PrivateRoute><Dashboard/></PrivateRoute>,
         children: [
             {
                 path:'/dashboard/balance',

@@ -1,18 +1,38 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import Swal from 'sweetalert2'
 
 const Login = () => {
+  const navigate = useNavigate();
   const {loginUser} = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    loginUser(data.email, data.password)
-    .then(res => console.log(res.user))
-  };
+  const onSubmit = async (data) => {
+    try {
+      const fireRes = await loginUser(data.email, data.password);
+      if(fireRes){
+        Swal.fire({
+          title: 'Successful',
+          text: 'Account successfully created!',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        })
+      navigate(location.state?.from?.pathname || '/');
+      }
+    } catch (error) {
+      Swal.fire({
+             title: 'Error',
+             text: error.message || 'Something went wrong',
+             icon: 'error',
+             confirmButtonText: 'Ok',
+           });
+    }
+  }
+  
 
   return (
     <div className="pt-16">
@@ -53,7 +73,11 @@ const Login = () => {
           <p>
             Don't have an account? <Link to="/register">Register</Link>
           </p>
+          <div>
+            <button className="border px-3 py-1.5 m-2 rounded-md">Login with Google</button>
+          </div>
         </div>
+        
       </div>
     </div>
   );
