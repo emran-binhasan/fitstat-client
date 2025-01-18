@@ -15,6 +15,7 @@ import Subscribers from "../pages/Dashboard/Subscribers/Subscribers";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import TrainerForm from "../pages/Trainers/TrainerForm";
+import ApplicationDetails from "../pages/Dashboard/AppliedTrainers/ApplicationDetails";
 
 
 const Router = createBrowserRouter([
@@ -69,8 +70,12 @@ const Router = createBrowserRouter([
                 element:<Subscribers/>
             },
             {
-                path:'/dashboard/applied-trainers',
+                path:'/dashboard/applications',
                 element:<AppliedTrainers/>
+            },
+            {
+                path:'/dashboard/application/:id',
+                element:<ApplicationDetails/>
             },
             {
                 path:'/dashboard/add-class',
