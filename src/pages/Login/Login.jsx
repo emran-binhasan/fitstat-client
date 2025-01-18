@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from 'sweetalert2'
+import SocialLogin from "../../components/SocialLogin";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ const Login = () => {
             Don't have an account? <Link to="/register">Register</Link>
           </p>
           <div>
-            <button className="border px-3 py-1.5 m-2 rounded-md">Login with Google</button>
+           <SocialLogin/>
           </div>
         </div>
         

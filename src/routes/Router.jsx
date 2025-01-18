@@ -13,6 +13,8 @@ import AppliedTrainers from "../pages/Dashboard/AppliedTrainers/AppliedTrainers"
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import Subscribers from "../pages/Dashboard/Subscribers/Subscribers";
 import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
+import ApplyForTrainer from "../pages/Trainers/ApplyForTrainer";
 
 
 const Router = createBrowserRouter([
@@ -38,11 +40,15 @@ const Router = createBrowserRouter([
             },
             {
                 path:'/login',
-                element:<Login/>
+                element:<PublicRoute><Login/></PublicRoute>
             },
             {
                 path:'/register',
-                element:<Register/>
+                element:<PublicRoute><Register/></PublicRoute>
+            },
+            {
+                path:'/trainers/apply',
+                element:<ApplyForTrainer/>
             },
         ]
     },

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from 'sweetalert2'
+import SocialLogin from "../../components/SocialLogin";
 
 const Register = () => {
   const { registerUser, updateUser } = useAuth();
@@ -134,6 +135,9 @@ const Register = () => {
           <p>
             Already have an account? <Link to="/login">Login</Link>
           </p>
+          <div>
+           <SocialLogin/>
+          </div>
         </div>
       </div>
     </div>
