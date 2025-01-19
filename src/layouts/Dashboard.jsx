@@ -22,6 +22,7 @@ const Dashboard = () => {
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/all-trainers"><IoPeople /> All Trainers</NavLink>
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/applications"><BiMessageAltDetail /> Applied Trainers</NavLink>
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/add-class"><MdAddChart /> Add Class</NavLink>
+        <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/add-forum"><IoPeople /> Add Forum</NavLink>
         </>}
         {isTrainer && 
         <>

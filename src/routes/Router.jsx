@@ -16,6 +16,7 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import TrainerForm from "../pages/Trainers/TrainerForm";
 import ApplicationDetails from "../pages/Dashboard/AppliedTrainers/ApplicationDetails";
+import AddForm from "../pages/Dashboard/AddForum/AddForm";
 
 
 const Router = createBrowserRouter([
@@ -80,6 +81,10 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/add-class',
                 element:<AddClass/>
+            },
+            {
+                path:'/dashboard/add-forum',
+                element:<AddForm/>
             },
         ]
     }
