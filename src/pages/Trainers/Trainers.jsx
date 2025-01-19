@@ -5,7 +5,7 @@ const Trainers = () => {
   return (
     <>
       <div className="container mx-auto py-5">
-        <PageTitle title="Community" subTitle="Checkout all our forms here" />
+        <PageTitle title="Trainers" subTitle="Checkout our best trainers who are experienced" />
         <TrainerBanner />
       </div>
     </>
