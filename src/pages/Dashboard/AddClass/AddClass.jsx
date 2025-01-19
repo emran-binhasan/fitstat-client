@@ -1,10 +1,36 @@
-import React from 'react';
+
 import DashboardTitle from '../../../components/DashboardTitle';
 import { useForm } from 'react-hook-form';
+import useImageAPI from '../../../hooks/useImageAPI';
+import useAxiosSecure from "../../../hooks/useAxiosSecure"
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const AddClass = () => {
     const {register, handleSubmit,reset,formState:{errors}} = useForm();
-    const onSubmit = d => console.log(d)
+    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
+    const imageUploadAPI = useImageAPI();
+    const onSubmit = async (data) => {
+      const imgRes =await axiosPublic.post(imageUploadAPI, {image:data.image[0]}, {
+        headers:{"Content-Type": "multipart/form-data"}
+       });
+       const classData = {
+        name:data.name,
+        image:imgRes.data.data.display_url,
+        details:data.details
+       }
+       const res = await axiosSecure.post(`/classes`, classData)
+       if(res.data.insertedId){
+        reset();
+        Swal.fire({
+          title: 'Successful',
+          text: 'Account successfully created!',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        })
+       }
+    }
     return (
         <div className="flex flex-col justify-center items-center border">
         <DashboardTitle title='Add Class'/>

@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from 'sweetalert2'
 import SocialLogin from "../../components/SocialLogin";
+import useImageAPI from "../../hooks/useImageAPI";
 
 const Register = () => {
   const { registerUser, updateUser } = useAuth();
@@ -14,7 +15,7 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const imageUploadAPI = (`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_fileAPI}`)
+  const imageUploadAPI = useImageAPI();
   const onSubmit = async (data) => {
      try {
 
