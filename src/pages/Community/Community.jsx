@@ -1,9 +1,12 @@
+import PageTitle from "../../components/PageTitle";
+
+
 
 const Community = () => {
     return (
-        <div>
-            Community
-        </div>
+        <div className="container mx-auto py-5">
+        <PageTitle title='Community' subTitle='Checkout all our forms here'/>
+    </div>
     );
 };
 

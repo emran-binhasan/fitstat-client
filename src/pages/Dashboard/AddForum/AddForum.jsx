@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import DashboardTitle from '../../../components/DashboardTitle';
 
 
-const AddForm = () => {
+const AddForum = () => {
     const {register,handleSubmit, reset, formState:{errors}} = useForm();
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
@@ -80,4 +80,4 @@ const AddForm = () => {
     );
 };
 
-export default AddForm;
+export default AddForum;

@@ -1,15 +1,15 @@
-
-import TrainerBanner from './TrainerBanner';
+import PageTitle from "../../components/PageTitle";
+import TrainerBanner from "./TrainerBanner";
 
 const Trainers = () => {
-    return (
-       
-         <>
-            <div className='my-20'>
-            <TrainerBanner/>
-            </div>
-         </>
-    );
+  return (
+    <>
+      <div className="container mx-auto py-5">
+        <PageTitle title="Community" subTitle="Checkout all our forms here" />
+        <TrainerBanner />
+      </div>
+    </>
+  );
 };
 
 export default Trainers;

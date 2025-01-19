@@ -19,7 +19,7 @@ const Header = () => {
     </>
   );
   return (
-    <header className="bg-gray-300/40  z-50 w-full">
+    <header className="container mx-auto border sticky top-0 z-50 w-full">
       <div className="flex p-4 mx-8 justify-between items-center ">
         <div>
           <h3 className="text-2xl medium text-gray-800">fitStat</h3>
