@@ -5,7 +5,7 @@ import PageTitle from "../../components/PageTitle";
 import { MdWorkOutline } from "react-icons/md";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 import TrainerBanner from "./TrainerBanner";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaBriefcase } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const TrainerDetails = () => {
   const axiosPublic = useAxiosPublic();

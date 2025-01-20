@@ -1,16 +1,16 @@
-import { Navigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+// import { Navigate } from "react-router-dom";
+// import useAuth from "../hooks/useAuth";
 
-const PublicRoute = ({children}) => {
-    const {user,loading} = useAuth();
-    if(loading){
-        return <div>loading ..........................</div>
-    }
-    if(user){
-       return <Navigate to={'/'} />
-    }
+// const PublicRoute = ({children}) => {
+//     const {user,loading} = useAuth();
+//     if(loading){
+//         return <div>loading ..........................</div>
+//     }
+//     if(user){
+//        return <Navigate to={'/'} />
+//     }
 
-    return children
-}
+//     return children
+// }
 
-export default PublicRoute;
+// export default PublicRoute;

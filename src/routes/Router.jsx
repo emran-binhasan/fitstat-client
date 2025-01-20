@@ -9,7 +9,6 @@ import Register from "../pages/Register/Register";
 import Dashboard from "../layouts/Dashboard";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import PrivateRoute from "./PrivateRoute";
-import PublicRoute from "./PublicRoute";
 import TrainerForm from "../pages/Trainers/TrainerForm";
 import ApplicationDetails from "../pages/Dashboard/Admin/AppliedTrainers/ApplicationDetails";
 import AddForum from "../pages/Dashboard/AddForum/AddForum";
@@ -48,11 +47,11 @@ const Router = createBrowserRouter([
             },
             {
                 path:'/login',
-                element:<PublicRoute><Login/></PublicRoute>
+                element:<Login/>
             },
             {
                 path:'/register',
-                element:<PublicRoute><Register/></PublicRoute>
+                element:<Register/>
             },
             {
                 path:'/trainers/apply',
