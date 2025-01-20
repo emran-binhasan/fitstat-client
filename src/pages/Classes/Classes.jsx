@@ -1,9 +1,12 @@
+
 import PageTitle from "../../components/PageTitle";
 import useClasses from "../../hooks/useClasses";
 
+import ClassTrainers from "./ClassTrainers";
+
 const Classes = () => {
     const [classes] = useClasses();
-    
+
     return (
         <div className="container mx-auto py-5">
             <PageTitle title='Classes' subTitle='Checkout all our classes now!'/>
@@ -32,8 +35,8 @@ const Classes = () => {
                         </p>
                     </div>
                     <div className="border-b-2 mt-3 mb-2"></div>
-                    <div className="p-3 space-y-2">
-                        <h4>Trains who took this class :</h4>
+                    <div className="p-1 gap-2 flex items-center">
+                        <ClassTrainers name={each.name}/>
                     </div>
                  </div>
                ))}

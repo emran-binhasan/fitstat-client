@@ -27,22 +27,38 @@ const Header = () => {
   const middleLinks = (
     <>
       <MenuItem delay={0.1}>
-        <NavLink to="/" className={({ isActive }) => getLinkClass(isActive)} onClick={() => setIsOpen(false)}>
+        <NavLink
+          to="/"
+          className={({ isActive }) => getLinkClass(isActive)}
+          onClick={() => setIsOpen(false)}
+        >
           Home
         </NavLink>
       </MenuItem>
       <MenuItem delay={0.2}>
-        <NavLink to="/classes" className={({ isActive }) => getLinkClass(isActive)} onClick={() => setIsOpen(false)}>
+        <NavLink
+          to="/classes"
+          className={({ isActive }) => getLinkClass(isActive)}
+          onClick={() => setIsOpen(false)}
+        >
           Classes
         </NavLink>
       </MenuItem>
       <MenuItem delay={0.3}>
-        <NavLink to="/trainers" className={({ isActive }) => getLinkClass(isActive)} onClick={() => setIsOpen(false)}>
+        <NavLink
+          to="/trainers"
+          className={({ isActive }) => getLinkClass(isActive)}
+          onClick={() => setIsOpen(false)}
+        >
           Trainers
         </NavLink>
       </MenuItem>
       <MenuItem delay={0.4}>
-        <NavLink to="/community" className={({ isActive }) => getLinkClass(isActive)} onClick={() => setIsOpen(false)}>
+        <NavLink
+          to="/community"
+          className={({ isActive }) => getLinkClass(isActive)}
+          onClick={() => setIsOpen(false)}
+        >
           Community
         </NavLink>
       </MenuItem>
@@ -61,8 +77,8 @@ const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-black">
-      <div className="max-w-screen-xl mx-auto px-4">
+    <header className="sticky top-0 z-50 w-full bg-white/50 border-b border-black">
+      <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div>
             <h3 className="text-2xl font-medium text-gray-800">fitStat</h3>
@@ -72,12 +88,14 @@ const Header = () => {
 
           <div className="hidden md:block">
             {user ? (
-              <button
+              <div className="flex items-center"><img className="border w-10 h-10 rounded-full" src={user?.photoURL} alt="photo" />
+               <button
                 onClick={logOutUser}
                 className="px-4 py-2 hover:bg-gray-100 rounded transition-colors"
               >
                 LogOut
-              </button>
+              </button></div>
+             
             ) : (
               <NavLink
                 to="/login"
@@ -115,15 +133,17 @@ const Header = () => {
           <MenuItem delay={0.6}>
             <div className="pt-4 border-t border-gray-200">
               {user ? (
-                <button
-                  onClick={() => {
-                    logOutUser();
-                    setIsOpen(false);
-                  }}
-                  className="text-gray-700 hover:text-blue-600 transition-colors block py-2"
-                >
-                  LogOut
-                </button>
+                <>
+                  <button
+                    onClick={() => {
+                      logOutUser();
+                      setIsOpen(false);
+                    }}
+                    className="text-gray-700 hover:text-blue-600 transition-colors block py-2"
+                  >
+                    LogOut
+                  </button>
+                </>
               ) : (
                 <NavLink
                   to="/login"

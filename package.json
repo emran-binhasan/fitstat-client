@@ -14,6 +14,7 @@
     "axios": "^1.7.9",
     "firebase": "^11.1.0",
     "framer-motion": "^11.18.1",
+    "keen-slider": "^6.8.6",
     "lucide-react": "^0.473.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -22,6 +23,7 @@
     "react-router-dom": "^7.1.1",
     "react-select": "^5.9.0",
     "react-spinners": "^0.15.0",
+    "react-tooltip": "^5.28.0",
     "sweetalert2": "^11.15.10"
   },
   "devDependencies": {

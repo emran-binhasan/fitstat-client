@@ -11,14 +11,14 @@ const ApplicationDetails = () => {
         axiosSecure.get(`/users/application/${param.id}`)
         .then(res => setAppDetail(res.data))
     },[]);
+    console.log(appDetail)
     const {
         name,
         email,
         photoURL,
         role,
         age,
-        availableDays,
-        availableTimes,
+        availableSlots,
         biodata,
         experience,
         skills,
@@ -49,8 +49,8 @@ const ApplicationDetails = () => {
         <div className="mt-6 space-y-4">
           <p><strong>Role:</strong> {role}</p>
           <p><strong>Age:</strong> {age}</p>
-          <p><strong>Available Days:</strong> {availableDays?.join(", ")}</p>
-          <p><strong>Available Time:</strong> {availableTimes}</p>
+          <p><strong>Available Days:</strong> {availableSlots?.days?.join(", ")}</p>
+          <p><strong>Available Time:</strong> {availableSlots?.time}</p>
           <p><strong>Experience:</strong> {experience} years</p>
           <p><strong>Skills:</strong> {skills?.join(", ")}</p>
           <p><strong>Biodata:</strong> {biodata}</p>

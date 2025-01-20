@@ -17,6 +17,7 @@ import PublicRoute from "./PublicRoute";
 import TrainerForm from "../pages/Trainers/TrainerForm";
 import ApplicationDetails from "../pages/Dashboard/AppliedTrainers/ApplicationDetails";
 import AddForum from "../pages/Dashboard/AddForum/AddForum";
+import Activity from "../pages/Dashboard/Activity/Activity";
 
 
 const Router = createBrowserRouter([
@@ -85,6 +86,10 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/add-forum',
                 element:<AddForum/>
+            },
+            {
+                path:'/dashboard/activity',
+                element:<Activity/>
             },
         ]
     }

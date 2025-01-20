@@ -29,13 +29,13 @@ const skillsOptions = [
 ];
 
 const daysOptions = [
-  { value: "monday", label: "Monday" },
-  { value: "tuesday", label: "Tuesday" },
-  { value: "wednesday", label: "Wednesday" },
-  { value: "thursday", label: "Thursday" },
-  { value: "friday", label: "Friday" },
-  { value: "saturday", label: "Saturday" },
-  { value: "sunday", label: "Sunday" },
+  { value: "Monday", label: "Monday" },
+  { value: "Tuesday", label: "Tuesday" },
+  { value: "Wednesday", label: "Wednesday" },
+  { value: "Thursday", label: "Thursday" },
+  { value: "Friday", label: "Friday" },
+  { value: "Saturday", label: "Saturday" },
+  { value: "Sunday", label: "Sunday" },
 ];
 
 const socialLinksOptions = [
@@ -78,16 +78,21 @@ const TrainerForm = () => {
       platform: link.value,
       url: data.socialLinksUrls[link.value] || ""
     }));
-
-    const formattedData = {
-      ...data,
-      skills: data.skills?.map((skill) => skill.value) || [],
-      availableDays: data.availableDays?.map((day) => day.value) || [],
+   
+    await axiosSecure.patch(`/user/${userData._id}`, {
+      name: data.name,
+      photoURL: data.photoURL,
+      age:data.age,
+      availableSlots:{
+        days: data.availableDays?.map(each => each.value) || [],
+        time: data.availableTimes
+      },
+      experience:data.experience,
+      skills: data.skills?.map(skill => skill.value) || [],
       socialLinks: formattedSocialLinks,
-    };
-    // Remove the socialLinksUrls from the final data as it's now formatted
-    delete formattedData.socialLinksUrls;
-    await axiosSecure.patch(`/user/${userData._id}`, {...formattedData, status:'pending'}).then(res => {
+      biodata: data.biodata,
+      status: "pending",
+    }).then(res => {
      if(res.data.modifiedCount){
      Swal.fire({
                title: 'Great',

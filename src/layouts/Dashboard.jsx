@@ -1,5 +1,5 @@
 import { BiMessageAltDetail } from "react-icons/bi";
-import { FaMoneyCheck } from "react-icons/fa";
+import { FaHistory, FaMoneyCheck } from "react-icons/fa";
 import { GrUserManager } from "react-icons/gr";
 import { HiUserGroup } from "react-icons/hi";
 import { IoHomeOutline, IoPeople } from "react-icons/io5";
@@ -7,8 +7,9 @@ import { MdAddChart, MdOutlinePlayLesson, MdOutlineUnsubscribe } from "react-ico
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const isAdmin = false;
   const isTrainer = false;
+  const isMember = true;
   return (
     <div className="h-screen  flex justify-between ">
       <div className="w-1/6 border py-4 space-y-4 fixed">
@@ -31,6 +32,12 @@ const Dashboard = () => {
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/add-slot"><MdOutlineUnsubscribe />Add Slots</NavLink>
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/add-forum"><IoPeople /> Add Forum</NavLink>
         </>}
+
+        {isMember && <>
+          <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/slots"><FaMoneyCheck /> Manage Slots</NavLink>
+        <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/add-slot"><MdOutlineUnsubscribe />Add Slots</NavLink>
+        <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/activity"><FaHistory /> Activity Log</NavLink></>}
+
         <div className="border-b-2 w-[254px] mt-2 mb-3 -ml-4 "></div>
         <NavLink className='px-2 py-1.5 flex gap-2 items-center' to="/"><IoHomeOutline className="text-xl"/> Home</NavLink>
         <NavLink className='px-2 py-1.5 flex gap-2 items-center' to="/classes"><MdOutlinePlayLesson className="text-xl"/>Classes</NavLink>
