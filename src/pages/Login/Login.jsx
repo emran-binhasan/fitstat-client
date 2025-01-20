@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from 'sweetalert2'
 import SocialLogin from "../../components/SocialLogin";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,7 +37,12 @@ const Login = () => {
   
 
   return (
-    <div className="pt-16">
+    <>
+     <Helmet>
+        <title>Hello World</title>
+        <link rel="canonical" href="https://www.tacobell.com/" />
+      </Helmet>
+      <div className="pt-16">
       <div className="flex justify-between border items-center">
         <div className="flex-1">img</div>
         <div className="flex p-10 flex-col items-center justify-center flex-1 border">
@@ -81,6 +87,8 @@ const Login = () => {
         
       </div>
     </div>
+    </>
+   
   );
 };
 
