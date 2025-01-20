@@ -38,6 +38,13 @@ const daysOptions = [
   { value: "Sunday", label: "Sunday" },
 ];
 
+const timeOptions = [
+  { value: "Morning", label: "Morning" },
+  { value: "Noon", label: "Noon" },
+  { value: "Afternoon", label: "Afternoon" },
+  { value: "Evening", label: "Evening" },
+];
+
 const socialLinksOptions = [
   { value: "facebook", label: "Facebook" },
   { value: "twitter", label: "Twitter" },
@@ -233,14 +240,13 @@ const TrainerForm = () => {
             className="w-full p-2 border rounded focus:ring focus:ring-blue-300"
           />
         </div>
+
+
         <div>
-          <label className="block text-gray-600 font-medium">Available Time</label>
-          <input
-            {...register("availableTimes")}
-            type="text"
-            placeholder="e.g., 10 AM - 2 PM"
-            className="w-full p-2 border rounded focus:ring focus:ring-blue-300"
-          />
+          <label className="block text-gray-600 font-medium">Available Time *</label>
+          <Controller name="availableTime" control={control}
+          rules={{required: 'Please select a time'}}
+          render={({field}) => (<Select {...field} options={timeOptions} className="w-full"/>)}/>
         </div>
       </div>
 

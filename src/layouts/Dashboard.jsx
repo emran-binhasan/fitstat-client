@@ -7,9 +7,9 @@ import { MdAddChart, MdOutlinePlayLesson, MdOutlineUnsubscribe } from "react-ico
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-  const isAdmin = false;
+  const isAdmin = true;
   const isTrainer = false;
-  const isMember = true;
+  const isMember = false;
   return (
     <div className="h-screen  flex justify-between ">
       <div className="w-1/6 border py-4 space-y-4 fixed">

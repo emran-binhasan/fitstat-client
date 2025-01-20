@@ -7,17 +7,18 @@ import Community from "../pages/Community/Community";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Dashboard from "../layouts/Dashboard";
-import Balance from "../pages/Dashboard/Balance/Balance";
-import AllTrainers from "../pages/Dashboard/AllTrainers/AllTrainers";
-import AppliedTrainers from "../pages/Dashboard/AppliedTrainers/AppliedTrainers";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
-import Subscribers from "../pages/Dashboard/Subscribers/Subscribers";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import TrainerForm from "../pages/Trainers/TrainerForm";
-import ApplicationDetails from "../pages/Dashboard/AppliedTrainers/ApplicationDetails";
+import ApplicationDetails from "../pages/Dashboard/Admin/AppliedTrainers/ApplicationDetails";
 import AddForum from "../pages/Dashboard/AddForum/AddForum";
 import Activity from "../pages/Dashboard/Activity/Activity";
+import TrainerDetails from "../pages/Trainers/TrainerDetails";
+import Balance from "../pages/Dashboard/Admin/Balance/Balance";
+import Subscribers from "../pages/Dashboard/Admin/Subscribers/Subscribers";
+import AllTrainers from "../pages/Dashboard/Admin/AllTrainers/AllTrainers";
+import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers/AppliedTrainers";
 
 
 const Router = createBrowserRouter([
@@ -36,6 +37,10 @@ const Router = createBrowserRouter([
             {
                 path:'/trainers',
                 element:<Trainers/>
+            },
+            {
+                path:'/trainer/:id',
+                element:<TrainerDetails/>
             },
             {
                 path:'/community',

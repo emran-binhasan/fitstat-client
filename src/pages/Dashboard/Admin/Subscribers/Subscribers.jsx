@@ -1,7 +1,7 @@
 
 import { useQuery } from "@tanstack/react-query";
-import DashboardTitle from "../../../components/DashboardTitle";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import DashboardTitle from "../../../../components/DashboardTitle";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 const Subscribers = () => {
     const axiosSecure = useAxiosSecure();
     const {data:subscribers=[], refetch} = useQuery({

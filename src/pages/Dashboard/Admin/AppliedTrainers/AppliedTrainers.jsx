@@ -1,23 +1,54 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import DashboardTitle from "../../../components/DashboardTitle";
-import { Link } from "react-router-dom";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import DashboardTitle from "../../../../components/DashboardTitle";
+import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
-const AllTrainers = () => {
-  const axiosPublic = useAxiosPublic();
+const AppliedTrainers = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: trainers = [], refetch } = useQuery({
-    queryKey: ["trainers"],
+
+  const { data: applications = [], refetch } = useQuery({
+    queryKey: ["applications"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/trainers");
+      const res = await axiosSecure.get("/users/applications");
       return res.data;
     },
   });
 
-  const handleRemoveTrainer = (id) => {
-    console.log(id);
+  const handleAcceptApplication = (id) => {
+    console.log("accepted", id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Member will be promoted to a trainer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .patch(`/application/accept/${id}`, {
+            status: "approved",
+            role: "trainer",
+          })
+          .then((res) => {
+            if (res.data.modifiedCount) {
+              refetch()
+              Swal.fire({
+                title: "Success",
+                text: "Promoted",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
+
+  const handleRejectApplication = (id) => {
+    console.log("rejected", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -29,27 +60,25 @@ const AllTrainers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
-          .patch(`/trainer/${id}`, { role: "member", status: "" })
+          .patch(`/application/reject/${id}`, { status: "rejected" })
           .then((res) => {
-            if (res.data.modifiedCount) {
-              refetch();
-              Swal.fire({
-                title: "Removed!",
-                text: "Sucessfully removed the trainer",
-                icon: "success",
-              });
-            }
+            console.log(res.data);
           });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
       }
     });
   };
 
   return (
     <div className="flex flex-col justify-center items-center border">
-      <DashboardTitle title="Trainers" />
+      <DashboardTitle title="Applications" />
       <div className="w-4/5 mx-auto border">
         <div className="flex items-center justify-around p-4">
-          <h3>TOTAL TRAINERS : {trainers.length} </h3>
+          <h3>TOTAL APPPLICATIONS : {applications.length} </h3>
         </div>
         <table className="w-full bg-white border border-gray-200 shadow-lg rounded-lg overflow-hidden">
           <thead className="bg-gray-100 w-full">
@@ -69,21 +98,21 @@ const AllTrainers = () => {
             </tr>
           </thead>
           <tbody>
-            {trainers.map((trainer) => (
+            {applications.map((application) => (
               <tr
-                key={trainer._id}
+                key={application._id}
                 className="border-t border-gray-200 hover:bg-gray-50"
               >
                 <td className="py-2 px-2 md:px-4 text-sm text-gray-700 hidden sm:table-cell">
-                  {trainer.name}
+                  {application.name}
                 </td>
 
                 <td className="py-2 px-2 md:px-4  text-gray-700">
-                  {trainer.email}
+                  {application.email}
                 </td>
                 <td className="py-2 px-2 md:px-4  text-gray-700">
                   <Link
-                    to={`/dashboard/application/${trainer._id}`}
+                    to={`/dashboard/application/${application._id}`}
                     className="bg-orange-400 px-3 py-1 rounded-md text-white"
                   >
                     Details
@@ -91,10 +120,16 @@ const AllTrainers = () => {
                 </td>
                 <td className="py-2 px-2 space-y-1 space-x-2 ">
                   <button
-                    onClick={() => handleRemoveTrainer(trainer._id)}
+                    onClick={() => handleAcceptApplication(application._id)}
+                    className="bg-green-500 px-3 py-1 rounded-md text-white"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    onClick={() => handleRejectApplication(application._id)}
                     className="bg-red-500 px-3 py-1 rounded-md text-white"
                   >
-                    Remove
+                    Reject
                   </button>
                 </td>
               </tr>
@@ -106,4 +141,4 @@ const AllTrainers = () => {
   );
 };
 
-export default AllTrainers;
+export default AppliedTrainers;
