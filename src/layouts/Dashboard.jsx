@@ -3,7 +3,7 @@ import { FaHistory, FaMoneyCheck, FaUser } from "react-icons/fa";
 import { GrUserManager } from "react-icons/gr";
 import { HiUserGroup } from "react-icons/hi";
 import { IoHomeOutline, IoPeople } from "react-icons/io5";
-import { MdAddChart, MdOutlinePlayLesson, MdOutlineUnsubscribe } from "react-icons/md";
+import { MdAddChart, MdOutlinePlayLesson, MdOutlineUnsubscribe, MdSaveAs } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -35,7 +35,7 @@ const Dashboard = () => {
 
         {isMember && <>
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/user-profile"><FaUser /> Profile</NavLink>
-        <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/add-slot"><MdOutlineUnsubscribe />Add Slots</NavLink>
+        <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/booked"><MdSaveAs />Booked Trainers</NavLink>
         <NavLink className=' px-2 py-1.5 flex gap-2 items-center' to="/dashboard/activity"><FaHistory /> Activity Log</NavLink></>}
 
         <div className="border-b-2 w-[254px] mt-2 mb-3 -ml-4 "></div>

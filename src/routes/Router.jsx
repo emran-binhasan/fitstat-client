@@ -19,6 +19,10 @@ import AllTrainers from "../pages/Dashboard/Admin/AllTrainers/AllTrainers";
 import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers/AppliedTrainers";
 import Activity from "../pages/Dashboard/User/Activity/Activity"
 import Profile from "../pages/Dashboard/User/Profile/Profile";
+import BookedTrainer from "../pages/Dashboard/User/BookedTrainer/BookedTrainer";
+import TrainerBooking from "../pages/Trainers/TrainerBooking";
+import CheckoutForm from "../pages/Payment/CheckOutForm";
+import Payment from "../pages/Payment/Payment";
 
 const Router = createBrowserRouter([
     {
@@ -57,6 +61,14 @@ const Router = createBrowserRouter([
                 path:'/trainers/apply',
                 element:<PrivateRoute><TrainerForm/></PrivateRoute>
             },
+            {
+                path:'/trainer/booking/:id',
+                element:<TrainerBooking/>
+            },
+            {
+                path:'/trainer/booking/checkout',
+                element:<Payment/>
+            }
         ]
     },
     {
@@ -98,6 +110,10 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/user-profile',
                 element:<Profile/>
+            },
+            {
+                path:'/dashboard/booked',
+                element:<BookedTrainer/>
             },
         ]
     }
