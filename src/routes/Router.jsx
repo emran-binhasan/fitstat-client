@@ -12,13 +12,13 @@ import PrivateRoute from "./PrivateRoute";
 import TrainerForm from "../pages/Trainers/TrainerForm";
 import ApplicationDetails from "../pages/Dashboard/Admin/AppliedTrainers/ApplicationDetails";
 import AddForum from "../pages/Dashboard/AddForum/AddForum";
-import Activity from "../pages/Dashboard/Activity/Activity";
 import TrainerDetails from "../pages/Trainers/TrainerDetails";
 import Balance from "../pages/Dashboard/Admin/Balance/Balance";
 import Subscribers from "../pages/Dashboard/Admin/Subscribers/Subscribers";
 import AllTrainers from "../pages/Dashboard/Admin/AllTrainers/AllTrainers";
 import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers/AppliedTrainers";
-
+import Activity from "../pages/Dashboard/User/Activity/Activity"
+import Profile from "../pages/Dashboard/User/Profile/Profile";
 
 const Router = createBrowserRouter([
     {
@@ -94,6 +94,10 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/activity',
                 element:<Activity/>
+            },
+            {
+                path:'/dashboard/user-profile',
+                element:<Profile/>
             },
         ]
     }

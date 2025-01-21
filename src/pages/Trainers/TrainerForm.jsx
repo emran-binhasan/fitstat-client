@@ -92,7 +92,7 @@ const TrainerForm = () => {
       age:data.age,
       availableSlots:{
         days: data.availableDays?.map(each => each.value) || [],
-        time: data.availableTimes
+        time: data.availableTime.value
       },
       experience:data.experience,
       skills: data.skills?.map(skill => skill.value) || [],

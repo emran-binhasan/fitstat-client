@@ -29,7 +29,7 @@ const TrainerDetails = () => {
 
   return (
     <div className="container mx-auto py-5">
-      <PageTitle title="Trainers" subTitle="Checkout our best trainers who are experienced" />
+      <PageTitle title={`${name} Details`} subTitle="Learn about your trainer before booking" />
       
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* Left Side: Trainer Image & Availability */}
