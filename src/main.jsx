@@ -7,14 +7,17 @@ import AuthProvider from './context/AuthProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const queryClient = new QueryClient();
 import { HelmetProvider } from 'react-helmet-async';
+import BookingProvider from './context/BookingProvider'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
   <HelmetProvider>
   <QueryClientProvider client={queryClient}>
+  <BookingProvider>
   <AuthProvider>
     <RouterProvider router={Router}/>
     </AuthProvider>
+  </BookingProvider>
   </QueryClientProvider>
   </HelmetProvider>
   </StrictMode>,

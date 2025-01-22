@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'cta': 'url(./src/assets/images/cta.jpg)'
+      },
       animation: {
         "rotate-fade": "rotateFade 1.5s ease-in-out",
       },

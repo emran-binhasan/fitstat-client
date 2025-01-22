@@ -5,7 +5,7 @@ import DashboardTitle from "../../../../components/DashboardTitle";
 import useAuth from "../../../../hooks/useAuth";
 import useImageAPI from "../../../../hooks/useImageAPI";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-
+import { Helmet } from "react-helmet-async";
 
 const Profile = () => {
   const { user, updateUser } = useAuth();
@@ -20,13 +20,20 @@ const Profile = () => {
 
   const onSubmit = async (data) => {
     try {
-        const imgRes =await axiosPublic.post(imageUploadAPI, {image:data.image[0]}, {
-            headers:{"Content-Type": "multipart/form-data"}
-           })
-      
-          const newUserInfo = { displayName: data.name, photoURL: imgRes.data.data.display_url  };
-          const res = await updateUser(newUserInfo); 
-          console.log(res)
+      const imgRes = await axiosPublic.post(
+        imageUploadAPI,
+        { image: data.image[0] },
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      const newUserInfo = {
+        displayName: data.name,
+        photoURL: imgRes.data.data.display_url,
+      };
+      const res = await updateUser(newUserInfo);
+      console.log(res);
       Swal.fire({
         title: "Success!",
         text: "Profile updated successfully!",
@@ -46,6 +53,9 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col justify-center items-center border p-6 bg-gray-50">
+      <Helmet>
+        <title>FitStat | Profile</title>
+      </Helmet>
       <DashboardTitle title="Profile" />
       <div className="flex flex-col items-center space-y-6 bg-white rounded-lg shadow-lg p-8 w-3/4 mx-auto">
         {/* Profile Image */}

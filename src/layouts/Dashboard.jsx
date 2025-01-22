@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { BiMessageAltDetail } from "react-icons/bi";
 import { FaHistory, FaMoneyCheck, FaUser } from "react-icons/fa";
 import { GrUserManager } from "react-icons/gr";
@@ -8,10 +9,13 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   const isAdmin = true;
-  const isTrainer = false;
+  const isTrainer = true;
   const isMember = true;
   return (
     <div className="h-screen  flex justify-between ">
+           <Helmet>
+              <title>FitStat | Dashboard</title>
+            </Helmet>
       <div className="w-1/6 border py-4 space-y-4 fixed">
       <h3 className="text-2xl  text-center font-medium">fitStat</h3>
       <ul className="flex flex-col dashboard-ul px-4 space-y-4 ">

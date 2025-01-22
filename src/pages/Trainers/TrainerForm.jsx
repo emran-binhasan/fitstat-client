@@ -7,25 +7,11 @@ import useTheUser from "../../hooks/useTheUser";
 import Swal from "sweetalert2";
 
 const skillsOptions = [
-  { value: "hiit", label: "HIIT Blast" },
-  { value: "yoga", label: "Yoga Flow" },
-  { value: "pilates", label: "Pilates Core" },
-  { value: "kickboxing", label: "Cardio Kickboxing" },
-  { value: "zumba", label: "Zumba Dance" },
-  { value: "spin", label: "Spin Cycle" },
-  { value: "barre", label: "Barre Fitness" },
-  { value: "meditation", label: "Meditation & Mindfulness" },
-  { value: "crossfit", label: "CrossFit Fundamentals" },
-  { value: "powerlifting", label: "Powerlifting Basics" },
-  { value: "calisthenics", label: "Calisthenics Strength" },
-  { value: "strength_training", label: "Strength Training" },
-  { value: "weightlifting", label: "Olympic Weightlifting" },
-  { value: "core", label: "Core Blast" },
-  { value: "combat", label: "Body Combat" },
-  { value: "bodybuilding", label: "Bodybuilding Techniques" },
-  { value: "endurance", label: "Endurance Training" },
-  { value: "functional_fitness", label: "Functional Fitness" },
-  { value: "mobility", label: "Mobility & Flexibility" },
+  "HIIT Blast", "Yoga Flow", "Pilates Core", "Cardio Kickboxing", "Zumba Dance",
+  "Spin Cycle", "Barre Fitness", "Meditation & Mindfulness", "CrossFit Fundamentals",
+  "Powerlifting Basics", "Calisthenics Strength", "Strength Training",
+  "Olympic Weightlifting", "Core Blast", "Body Combat", "Bodybuilding Techniques",
+  "Endurance Training", "Functional Fitness", "Mobility & Flexibility"
 ];
 
 const daysOptions = [
@@ -172,18 +158,16 @@ const TrainerForm = () => {
 
       {/* Skills */}
       <div>
-        <label className="block text-gray-600 font-medium">Skills *</label>
-        <Controller
-          name="skills"
-          control={control}
-          rules={{ required: "Please select at least one skill" }}
-          render={({ field }) => (
-            <Select {...field} options={skillsOptions} isMulti className="w-full" />
-          )}
-        />
-        {errors.skills && <p className="text-red-500 text-sm">{errors.skills.message}</p>}
-      </div>
-
+          <label className="block font-medium">Skills *</label>
+          <div className="grid grid-cols-2 gap-2">
+            {skillsOptions.map(skill => (
+              <label key={skill} className="flex items-center">
+                <input type="checkbox" {...register("skills")} value={skill} className="mr-2" />
+                {skill}
+              </label>
+            ))}
+          </div>
+        </div>
       {/* Available Days */}
       <div>
         <label className="block text-gray-600 font-medium">Available Days *</label>

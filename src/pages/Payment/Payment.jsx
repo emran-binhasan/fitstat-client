@@ -18,9 +18,6 @@ const options = {
 
 
 
-
-
-
 const Payment = () => {
     return (
         <div>

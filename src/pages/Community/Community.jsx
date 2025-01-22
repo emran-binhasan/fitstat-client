@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import PageTitle from "../../components/PageTitle";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -16,6 +17,9 @@ const Community = () => {
     console.log(forums)
     return (
         <div className="container mx-auto py-5">
+                 <Helmet>
+                    <title>FitStat | Community</title>
+                  </Helmet>
         <PageTitle title='Community' subTitle='Checkout all our forms here'/>
     </div>
     );

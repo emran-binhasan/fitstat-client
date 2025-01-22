@@ -9,7 +9,7 @@ const About = () => {
           {/* Image Section */}
           <div className="flex justify-center lg:justify-start">
             <img
-              src="https://via.placeholder.com/400x400"
+              src=""
               alt="FitStat team"
               className="rounded-lg shadow-xl max-w-full"
             />

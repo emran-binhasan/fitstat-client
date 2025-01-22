@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import About from "./About";
 import FeaturedCards from "./FeaturedCards";
 import FeaturedClasses from "./FeaturedClasses";
@@ -9,6 +10,9 @@ import Slider from "./Slider";
 const Home = () => {
     return (
         <div>
+     <Helmet>
+        <title>FitStat | Home</title>
+      </Helmet>
             <Slider/>
             <FeaturedCards/>
             <About/>

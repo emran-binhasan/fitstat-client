@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAuth from "../hooks/useAuth";
+import { BookingContext } from "../context/BookingProvider";
 
 const getLinkClass = (isActive) =>
   `${
@@ -21,6 +22,8 @@ const MenuItem = ({ children, delay }) => (
 const Header = () => {
   const { user, logOutUser } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const {selectedClass} = useContext(BookingContext);
+  console.log(selectedClass)
 
   const toggleMenu = () => setIsOpen(!isOpen);
 

@@ -5,6 +5,8 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from 'sweetalert2'
 import SocialLogin from "../../components/SocialLogin";
 import useImageAPI from "../../hooks/useImageAPI";
+import { Helmet } from "react-helmet-async";
+import registerImg from "../../assets/auth/2.jpg"
 
 const Register = () => {
   const { registerUser, updateUser } = useAuth();
@@ -59,9 +61,14 @@ const Register = () => {
   
 
   return (
-    <div className="pt-16">
+    <div>
+           <Helmet>
+              <title>FitStat | Register</title>
+            </Helmet>
       <div className="flex justify-between border items-center">
-        <div className="flex-1">img</div>
+        <div className="flex-1">
+           <img className="" src={registerImg} alt="register" />
+        </div>
         <div className="flex p-10 flex-col items-center justify-center flex-1 border">
           <h3 className="text-xl font-medium text-gray-700">Register</h3>
           <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-6">
@@ -72,7 +79,7 @@ const Register = () => {
               type="text"
               placeholder="Type your name"
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
               {...register("name", { required: true, minLength: 4 })}
             />
             {errors.name?.type === "minLength" && (
@@ -87,7 +94,7 @@ const Register = () => {
               type="email"
               placeholder="Type your email"
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
               {...register("email")}
             />
           </div>
@@ -99,7 +106,7 @@ const Register = () => {
               type="password"
               placeholder="Type your password"
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
               {...register("password", {
                 required: true,
                 minLength: 6,
@@ -128,13 +135,13 @@ const Register = () => {
   
           {/* Submit Button */}
           <div className="mb-4">
-            <button className="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-200">
+            <button className="px-4 py-1.5 border rounded-md bg-orange-500 text-white">
               Register
             </button>
           </div>
         </form>
           <p>
-            Already have an account? <Link to="/login">Login</Link>
+            Already have an account? <Link className="underline underline-offset-2 text-orange-600" to="/login">Login</Link>
           </p>
           <div>
            <SocialLogin/>

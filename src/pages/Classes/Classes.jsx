@@ -1,4 +1,5 @@
 
+import { Helmet } from "react-helmet-async";
 import PageTitle from "../../components/PageTitle";
 import useClasses from "../../hooks/useClasses";
 
@@ -9,6 +10,9 @@ const Classes = () => {
 
     return (
         <div className="container mx-auto py-5">
+                 <Helmet>
+                    <title>FitStat | Classes</title>
+                  </Helmet>
             <PageTitle title='Classes' subTitle='Checkout all our classes now!'/>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                {classes?.map(each => (
@@ -36,7 +40,7 @@ const Classes = () => {
                     </div>
                     <div className="border-b-2 mt-3 mb-2"></div>
                     <div className="p-1 gap-2 flex items-center">
-                        <ClassTrainers name={each.name}/>
+                        <ClassTrainers name={each.name} classId={each._id}/>
                     </div>
                  </div>
                ))}

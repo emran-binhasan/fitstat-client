@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { FaGoogle } from "react-icons/fa";
 
 const SocialLogin = () => {
     const {googleLogin} = useAuth();
@@ -35,7 +36,7 @@ const SocialLogin = () => {
     
     return (
         <div>
-            <button onClick={handleGoogleLogin} className='px-4 py-1.5 m-2 rounded-md border'>Login with Google</button>
+            <button onClick={handleGoogleLogin} className='px-4 py-1.5 m-2 rounded-md border flex items-center gap-2'> <FaGoogle />Login with Google</button>
         </div>
     );
 };

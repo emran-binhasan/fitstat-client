@@ -1,10 +1,14 @@
+import { Helmet } from "react-helmet-async";
 
 const Balance = () => {
-    return (
-        <div>
-            Balance
-        </div>
-    );
+  return (
+    <div>
+      <Helmet>
+        <title>FitStat | Balance</title>
+      </Helmet>
+      Balance
+    </div>
+  );
 };
 
 export default Balance;

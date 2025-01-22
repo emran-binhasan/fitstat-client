@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
+import { Helmet } from "react-helmet-async";
 
 const Trainers = () => {
   const [trainers] = useTrainers();
@@ -26,6 +27,9 @@ const Trainers = () => {
 
   return (
     <>
+         <Helmet>
+            <title>FitStat | Trainers</title>
+          </Helmet>
       <div className="container mx-auto py-5">
         <PageTitle
           title="Trainers"

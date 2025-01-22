@@ -23,6 +23,9 @@ import BookedTrainer from "../pages/Dashboard/User/BookedTrainer/BookedTrainer";
 import TrainerBooking from "../pages/Trainers/TrainerBooking";
 import CheckoutForm from "../pages/Payment/CheckOutForm";
 import Payment from "../pages/Payment/Payment";
+import Confirmation from "../pages/Payment/Confirmation";
+import AddSlot from "../pages/Dashboard/Trainer/AddSlot/AddSlot";
+import ManageSlot from "../pages/Dashboard/Trainer/ManageSlot/ManageSlot";
 
 const Router = createBrowserRouter([
     {
@@ -62,12 +65,12 @@ const Router = createBrowserRouter([
                 element:<PrivateRoute><TrainerForm/></PrivateRoute>
             },
             {
-                path:'/trainer/booking/:id',
+                path:'/booking/:id',
                 element:<TrainerBooking/>
             },
             {
-                path:'/trainer/booking/checkout',
-                element:<Payment/>
+                path:'/booking/checkout',
+                element:<Confirmation/>
             }
         ]
     },
@@ -114,6 +117,14 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/booked',
                 element:<BookedTrainer/>
+            },
+            {
+                path:'/dashboard/add-slot',
+                element:<AddSlot/>
+            },
+            {
+                path:'/dashboard/slots',
+                element:<ManageSlot/>
             },
         ]
     }

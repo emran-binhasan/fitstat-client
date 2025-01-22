@@ -4,6 +4,7 @@ import DashboardTitle from "../../../../components/DashboardTitle";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AllTrainers = () => {
   const axiosPublic = useAxiosPublic();
@@ -46,6 +47,9 @@ const AllTrainers = () => {
 
   return (
     <div className="flex flex-col justify-center items-center border">
+      <Helmet>
+        <title>FitStat | All Trainer</title>
+      </Helmet>
       <DashboardTitle title="Trainers" />
       <div className="w-4/5 mx-auto border">
         <div className="flex items-center justify-around p-4">

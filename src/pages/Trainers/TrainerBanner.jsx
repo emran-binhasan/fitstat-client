@@ -5,28 +5,26 @@ import { Fade } from "react-awesome-reveal";
 
 const TrainerBanner = () => {
   return (
-    <div className="pt-20 flex justify-center items-center">
+    <div className="p-4 flex justify-center items-center">
       <Fade duration={1200} triggerOnce>
-        <div className="border shadow-xl bg-white dark:bg-gray-800 max-w-lg w-full text-center px-8 py-10 rounded-lg">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+        <div className="border shadow-xl bg-cta bg-fixed bg-bottom text-white bg-contain w-[860px] h-80 text-center px-8 py-10 rounded-lg">
+        
+        <div className="mt-20">
+        <h3 className="text-4xl font-medium">
             Be a Trainer
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">
+          <p className=" mt-2 text-lg">
             Join our team and help trainees achieve their fitness goals.
           </p>
-
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-6"
-          >
-            <Link
+         <div className="m-4">
+         <Link
               to="/trainers/apply"
-              className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-3 rounded-lg font-medium text-lg shadow-lg hover:shadow-xl transition duration-300 dark:from-blue-400 dark:to-blue-600"
+              className="border py-2 px-3 rounded-md bg-orange-500 my-2"
             >
-              Start Applying Today <HiArrowRightCircle size={24} />
+              Start Applying Today <HiArrowRightCircle className="inline" size={24} />
             </Link>
-          </motion.div>
+         </div>
+        </div>
         </div>
       </Fade>
     </div>
