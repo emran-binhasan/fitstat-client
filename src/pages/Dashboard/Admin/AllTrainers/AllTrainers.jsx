@@ -87,7 +87,7 @@ const AllTrainers = () => {
                 </td>
                 <td className="py-2 px-2 md:px-4  text-gray-700">
                   <Link
-                    to={`/dashboard/application/${trainer._id}`}
+                    to={`/trainer/${trainer._id}`}
                     className="bg-orange-400 px-3 py-1 rounded-md text-white"
                   >
                     Details

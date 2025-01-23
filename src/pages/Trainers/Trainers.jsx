@@ -93,29 +93,21 @@ const Trainers = () => {
                   Available Slots:
                 </p>
                 <div className="mt-1 space-y-1">
-                  {each.availableSlots?.days.map((day, index) => (
-                    <span
-                      key={index}
-                      className="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-md"
-                    >
-                      <FaCalendarAlt className="text-gray-500" />
-                      {day} -{each.availableSlots?.time}
-                    </span>
-                  ))}
-                </div>
+  {each.slots?.map((slot, index) => (
+    <span
+      key={index}
+      className="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-md"
+    >
+      <FaCalendarAlt className="text-gray-500" />
+      {slot.slotDay} - {slot.slotName}
+    </span>
+  ))}
+</div>
+
               </div>
 
                   {/* Skills */}
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {each.skills.map((skill, index) => (
-                      <span
-                        key={index}
-                        className="px-2 py-1 bg-gray-200 text-gray-700 text-xs rounded uppercase"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                 
                 </div>
 
                 {/* Know More Button */}
