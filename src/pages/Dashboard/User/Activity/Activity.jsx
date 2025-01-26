@@ -9,7 +9,6 @@ import { Helmet } from "react-helmet-async";
 const Activity = () => {
   const [isModalOpen, setModalIsOpen] = useState(false);
   const [user] = useTheUser();
-  console.log(user);
   const { name, email, status, feedback } = user || {};
   return (
     <div className="flex flex-col justify-center items-center border">
@@ -17,6 +16,7 @@ const Activity = () => {
         <title>FitStat | Activity</title>
       </Helmet>
       <DashboardTitle title="My Activities" />
+
       {user.status ? (
         <>
           <div className="w-4/5 mx-auto border">

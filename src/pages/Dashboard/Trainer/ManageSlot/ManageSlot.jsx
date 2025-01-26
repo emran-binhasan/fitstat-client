@@ -10,7 +10,7 @@ const ManageSlot = () => {
     slotName: slot.slotName,
     slotTime: slot.slotTime,
     slotDay: slot.slotDay,
-    selectedClasses: slot.selectedClasses,
+    selectedClasses: slot?.selectedClasses,
     _id: slot._id
   })) : [];
   
@@ -51,7 +51,7 @@ const handleRemoveSlot =async (slotNameToRemove) => {
                 DURATION
               </th>
               <th className="py-3 px-2 md:px-4 text-left font-semibold text-gray-700">
-                CLASSES
+                CLASS
               </th>
               <th className="py-3 px-2 md:px-4 text-left font-semibold text-gray-700">
                 ACTION
@@ -76,7 +76,8 @@ const handleRemoveSlot =async (slotNameToRemove) => {
                 </td>
                 <td className="py-2 px-2 md:px-4  text-gray-700">
                  
-                {slot.selectedClasses?.map(cls => cls.label).join(', ') || "No Classes"}
+                {slot?.selectedClasses?.label || "No Classes"}
+
                  
                 </td>
                 <td className="py-2 px-2 space-y-1 space-x-2 ">

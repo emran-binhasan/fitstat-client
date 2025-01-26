@@ -27,9 +27,9 @@ const Trainers = () => {
 
   return (
     <>
-         <Helmet>
-            <title>FitStat | Trainers</title>
-          </Helmet>
+      <Helmet>
+        <title>FitStat | Trainers</title>
+      </Helmet>
       <div className="container mx-auto py-5">
         <PageTitle
           title="Trainers"
@@ -88,26 +88,24 @@ const Trainers = () => {
                   </div>
                   {/* Available Slots */}
                   <div className="text-sm font-medium text-green-600 mt-2">
-                <p className="flex items-center gap-2">
-                  <FaClock className="text-green-500" />
-                  Available Slots:
-                </p>
-                <div className="mt-1 space-y-1">
-  {each.slots?.map((slot, index) => (
-    <span
-      key={index}
-      className="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-md"
-    >
-      <FaCalendarAlt className="text-gray-500" />
-      {slot.slotDay} - {slot.slotName}
-    </span>
-  ))}
-</div>
-
-              </div>
+                    <p className="flex items-center gap-2">
+                      <FaClock className="text-green-500" />
+                      Available Slots:
+                    </p>
+                    <div className="mt-1 space-y-1">
+                      {each.slots?.map((slot, index) => (
+                        <span
+                          key={index}
+                          className="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-md"
+                        >
+                          <FaCalendarAlt className="text-gray-500" />
+                          {slot.slotDay} - {slot.slotName}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
 
                   {/* Skills */}
-                 
                 </div>
 
                 {/* Know More Button */}

@@ -50,7 +50,7 @@ const socialLinksOptions = [
 ];
 
 const TrainerForm = () => {
-  const [userData, refetch] = useTheUser();
+  const [userData] = useTheUser();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const {

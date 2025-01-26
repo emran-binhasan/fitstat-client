@@ -5,8 +5,11 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import DashboardTitle from "../../../components/DashboardTitle";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../../hooks/useAuth";
+import useTheUser from "../../../hooks/useTheUser";
 
 const AddForum = () => {
+  const [user] = useTheUser();
   const {
     register,
     handleSubmit,
@@ -28,6 +31,9 @@ const AddForum = () => {
       title: data.title,
       image: imgRes.data.data.display_url,
       details: data.details,
+      author:user.name,
+      role:user.role,
+      postedAt:new Date()
     };
     const res = await axiosSecure.post(`/forums`, forumData);
     if (res.data.insertedId) {

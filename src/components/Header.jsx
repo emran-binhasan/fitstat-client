@@ -21,9 +21,10 @@ const MenuItem = ({ children, delay }) => (
 
 const Header = () => {
   const { user, logOutUser } = useAuth();
+
   const [isOpen, setIsOpen] = useState(false);
-  const {selectedClass} = useContext(BookingContext);
-  console.log(selectedClass)
+
+
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -90,8 +91,8 @@ const Header = () => {
           <ul className="hidden md:flex gap-6 items-center">{middleLinks}</ul>
 
           <div className="hidden md:block">
-            {user ? (
-              <div className="flex items-center"><img className="border w-10 h-10 rounded-full" src={user?.photoURL} alt="photo" />
+            {user && user?.email ? (
+              <div className="flex items-center"><img className="border w-10 h-10 mx-2 rounded-full" src={user?.photoURL} alt="photo" />
                <button
                 onClick={logOutUser}
                 className="px-4 py-2 hover:bg-gray-100 rounded transition-colors"

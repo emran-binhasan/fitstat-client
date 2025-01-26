@@ -1,16 +1,18 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import PageTitle from "../../components/PageTitle";
 import { MdWorkOutline } from "react-icons/md";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 import TrainerBanner from "./TrainerBanner";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaCalendarAlt, FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { useContext } from "react";
+import { BookingContext } from "../../context/BookingProvider";
 
 const TrainerDetails = () => {
   const axiosPublic = useAxiosPublic();
   const { id } = useParams();
-
+  const {setSelectedSlot} = useContext(BookingContext)
   const { data: trainer } = useQuery({
     queryKey: ["trainer", id],
     queryFn: async () => {
@@ -19,6 +21,10 @@ const TrainerDetails = () => {
     },
   });
   const navigate = useNavigate();
+  const handleBookingSlot = (slot) => {
+    setSelectedSlot(slot);
+    navigate(`/booking/${id}`)
+  }
   const socialIcons = {
     facebook: FaFacebook,
     twitter: FaTwitter,
@@ -30,14 +36,15 @@ const TrainerDetails = () => {
     name,
     age,
     photoURL,
-    availableSlots,
     biodata,
     email,
     skills,
     experience,
     socialLinks,
+    slots,
     _id,
   } = trainer || {};
+  
   return (
     <div className="container mx-auto py-5">
       <PageTitle
@@ -61,22 +68,19 @@ const TrainerDetails = () => {
               Available Slots:
             </p>
             <div className="mt-2 flex flex-col gap-2">
-              {availableSlots?.days?.map((day, index) => (
-                <span
-                  key={index}
-                  onClick={() => {
-                    localStorage.setItem("selectedDay", JSON.stringify(day));
-                    localStorage.setItem(
-                      "selectedTime",
-                      JSON.stringify(availableSlots?.time)
-                    );
-                    navigate(`/booking/${_id}`);
-                  }}
-                  className="border rounded-md px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700"
-                >
-                  {day} - {availableSlots?.time}
-                </span>
-              ))}
+              <div className="mt-1 space-y-1">
+                {slots?.map((slot, index) => (
+                  <span 
+                    key={index}
+                    onClick={()=>handleBookingSlot(slot)}
+                    
+                    className="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-md"
+                  >
+                    <FaCalendarAlt className="text-gray-500" />
+                    {slot.slotDay} - {slot.slotName}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>

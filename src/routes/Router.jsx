@@ -20,12 +20,11 @@ import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers/AppliedTra
 import Activity from "../pages/Dashboard/User/Activity/Activity"
 import Profile from "../pages/Dashboard/User/Profile/Profile";
 import BookedTrainer from "../pages/Dashboard/User/BookedTrainer/BookedTrainer";
-import TrainerBooking from "../pages/Trainers/TrainerBooking";
-import CheckoutForm from "../pages/Payment/CheckOutForm";
-import Payment from "../pages/Payment/Payment";
-import Confirmation from "../pages/Payment/Confirmation";
+import TrainerBooking from "../pages/Trainers/TrainerBooking";;
+import Payment from "../pages/Payment/Payment";;
 import AddSlot from "../pages/Dashboard/Trainer/AddSlot/AddSlot";
 import ManageSlot from "../pages/Dashboard/Trainer/ManageSlot/ManageSlot";
+
 
 const Router = createBrowserRouter([
     {
@@ -70,7 +69,7 @@ const Router = createBrowserRouter([
             },
             {
                 path:'/booking/checkout',
-                element:<Confirmation/>
+                element:<Payment/>
             }
         ]
     },
@@ -78,6 +77,7 @@ const Router = createBrowserRouter([
         path:'/dashboard',
         element:<PrivateRoute><Dashboard/></PrivateRoute>,
         children: [
+            // ADMIN
             {
                 path:'/dashboard/balance',
                 element:<Balance/>
@@ -106,6 +106,18 @@ const Router = createBrowserRouter([
                 path:'/dashboard/add-forum',
                 element:<AddForum/>
             },
+
+            // TRAINER
+            {
+                path:'/dashboard/add-slot',
+                element:<AddSlot/>
+            },
+            {
+                path:'/dashboard/slots',
+                element:<ManageSlot/>
+            },
+
+            // MEMBER
             {
                 path:'/dashboard/activity',
                 element:<Activity/>
@@ -118,14 +130,7 @@ const Router = createBrowserRouter([
                 path:'/dashboard/booked',
                 element:<BookedTrainer/>
             },
-            {
-                path:'/dashboard/add-slot',
-                element:<AddSlot/>
-            },
-            {
-                path:'/dashboard/slots',
-                element:<ManageSlot/>
-            },
+          
         ]
     }
 ])

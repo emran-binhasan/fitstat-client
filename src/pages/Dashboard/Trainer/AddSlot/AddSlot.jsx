@@ -14,6 +14,7 @@ const AddSlot = () => {
     handleSubmit,
     control,
     formState: { errors },
+    reset
   } = useForm();
 
   // GET OLD DATA
@@ -56,6 +57,7 @@ const AddSlot = () => {
                   icon: "success",
                   confirmButtonText: "Ok",
                 });
+    reset()
     }
   };
   return (
@@ -210,7 +212,7 @@ const AddSlot = () => {
                 <Select
                   {...field}
                   options={classLists}
-                  isMulti
+                 
                   className="w-full"
                 />
               )}

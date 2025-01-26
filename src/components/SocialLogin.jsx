@@ -2,8 +2,10 @@ import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { FaGoogle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
+    const navigate = useNavigate();
     const {googleLogin} = useAuth();
     const axiosPublic = useAxiosPublic()
     const handleGoogleLogin = async() => {
@@ -16,6 +18,7 @@ const SocialLogin = () => {
                 photoURL: res.user.photoURL,
                 role:'member'
               });
+              navigate(location.state?.from?.pathname || '/');
               Swal.fire({
                 title: 'Successful',
                 text: `Welcome ${res.user.displayName}`,
