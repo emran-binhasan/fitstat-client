@@ -4,6 +4,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { FaCalendarCheck } from "react-icons/fa";
 import { Reveal } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
+import Loading from "../Others/Loading";
 
 const FeaturedClasses = () => {
   const axiosPublic = useAxiosPublic();
@@ -19,7 +20,7 @@ const FeaturedClasses = () => {
   });
 
   // Show loading or error state
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading/>
   if (isError) return <div>Error fetching data.</div>;
 
   return (
@@ -28,7 +29,7 @@ const FeaturedClasses = () => {
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">Featured Classes</h2>
 
         {/* Card Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
           {popularClasses?.map((classItem, index) => (
             <Reveal key={classItem._id} effect="fadeInUp" delay={index * 200}>
               <div className="bg-white shadow-lg rounded-lg overflow-hidden">

@@ -37,7 +37,7 @@ const Trainers = () => {
         />
 
         {/* Trainers Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {trainers?.map((each) => (
             <div
               key={each._id}
@@ -120,7 +120,7 @@ const Trainers = () => {
           ))}
         </div>
 
-        <TrainerBanner />
+     
       </div>
     </>
   );

@@ -34,7 +34,7 @@ const Community = () => {
   
     <div className="container mx-auto p-6">
        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
             <ForumPost key={post._id} post={post} />
           ))}

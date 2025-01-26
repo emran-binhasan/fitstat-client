@@ -6,6 +6,8 @@ import useClasses from "../../../../hooks/useClasses";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import DashboardTitle from "../../../../components/DashboardTitle";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 // GET USER DATA
 const AddSlot = () => {
@@ -23,12 +25,19 @@ const AddSlot = () => {
   // DESTRUCTURE OLD DATA
   const { name, age, photoURL, email, skills, biodata, hoursPerDay,_id } =
     oldData || {};
-
+const axiosPublic = useAxiosPublic()
   // GET CLASSES
-  const [classes] = useClasses();
+  const {data:classes} = useQuery({
+    queryKey:['classes'],
+    queryFn:async()=>{
+      const res = await axiosPublic.get('/classes/all');
+      return res.data
+    }
+  })
+  console.log(classes)
 
   // CLASS TO OPTION FOR REACT SELECT
-  const classLists = classes.map((classItem) => ({
+  const classLists = classes?.map((classItem) => ({
     value: classItem._id,
     label: classItem.name,
   }));

@@ -24,6 +24,7 @@ import TrainerBooking from "../pages/Trainers/TrainerBooking";;
 import Payment from "../pages/Payment/Payment";;
 import AddSlot from "../pages/Dashboard/Trainer/AddSlot/AddSlot";
 import ManageSlot from "../pages/Dashboard/Trainer/ManageSlot/ManageSlot";
+import NotFound from "../pages/Others/NotFound";
 
 
 const Router = createBrowserRouter([
@@ -65,7 +66,7 @@ const Router = createBrowserRouter([
             },
             {
                 path:'/booking/:id',
-                element:<TrainerBooking/>
+                element:<PrivateRoute><TrainerBooking/></PrivateRoute>
             },
             {
                 path:'/booking/checkout',
@@ -80,60 +81,64 @@ const Router = createBrowserRouter([
             // ADMIN
             {
                 path:'/dashboard/balance',
-                element:<Balance/>
+                element:<PrivateRoute><Balance/></PrivateRoute>
             },
             {
                 path:'/dashboard/all-trainers',
-                element:<AllTrainers/>
+                element:<PrivateRoute><AllTrainers/></PrivateRoute>
             },
             {
                 path:'/dashboard/subscribers',
-                element:<Subscribers/>
+                element:<PrivateRoute><Subscribers/></PrivateRoute>
             },
             {
                 path:'/dashboard/applications',
-                element:<AppliedTrainers/>
+                element:<PrivateRoute><AppliedTrainers/></PrivateRoute>
             },
             {
                 path:'/dashboard/application/:id',
-                element:<ApplicationDetails/>
+                element:<PrivateRoute><ApplicationDetails/></PrivateRoute>
             },
             {
                 path:'/dashboard/add-class',
-                element:<AddClass/>
+                element:<PrivateRoute><AddClass/></PrivateRoute>
             },
             
             // ADMIN AND TRAINER
             {
                 path:'/dashboard/add-forum',
-                element:<AddForum/>
+                element:<PrivateRoute><AddForum/></PrivateRoute>
             },
 
             // TRAINER
             {
                 path:'/dashboard/add-slot',
-                element:<AddSlot/>
+                element:<PrivateRoute><AddSlot/></PrivateRoute>
             },
             {
                 path:'/dashboard/slots',
-                element:<ManageSlot/>
+                element:<PrivateRoute><ManageSlot/></PrivateRoute>
             },
 
             // MEMBER
             {
                 path:'/dashboard/activity',
-                element:<Activity/>
+                element:<PrivateRoute><Activity/></PrivateRoute>
             },
             {
                 path:'/dashboard/user-profile',
-                element:<Profile/>
+                element:<PrivateRoute><Profile/></PrivateRoute>
             },
             {
                 path:'/dashboard/booked',
-                element:<BookedTrainer/>
+                element:<PrivateRoute><BookedTrainer/></PrivateRoute>
             },
           
         ]
+    },
+    {
+        path:'*',
+        element:<NotFound/>
     }
 ])
 export default Router;

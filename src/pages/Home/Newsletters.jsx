@@ -23,14 +23,14 @@ const Newsletter = () => {
   return (
     
     <section className="py-8 ">
-      <div className="container mx-auto flex items-center justify-center px-4 md:px-6">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-center px-4 md:px-6">
         {/* Image Section with Fade animation */}
         <Fade left>
           <div className="flex-1 max-w-md">
             <img
               src="https://i.ibb.co.com/tJv6bkN/e-mail.gif" // Replace with your image URL
               alt="Newsletter"
-              className="rounded-lg shadow-lg w-full h-auto"
+              className="rounded-lg w-2/3 mx-auto md:w-4/5 h-auto"
             />
           </div>
         </Fade>
@@ -49,13 +49,13 @@ const Newsletter = () => {
           </Fade>
 
           <Fade right delay={600}>
-            <form onSubmit={handleSubmit(onSubmit)} className="bg-gray-50 p-6 rounded-lg shadow-lg">
+            <form onSubmit={handleSubmit(onSubmit)} className=" p-6 rounded-lg ">
               <div className="mb-4">
                 <input
                   type="text"
                   placeholder="Your Name"
                   {...register('name', { required: 'Name is required' })}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
                 />
                 {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
               </div>
@@ -71,7 +71,7 @@ const Newsletter = () => {
                       message: 'Please enter a valid email address',
                     }
                   })}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
                 />
                 {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
               </div>

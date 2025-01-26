@@ -5,6 +5,7 @@ import { FaStar } from "react-icons/fa";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import { Fade } from "react-awesome-reveal"; // Apply fade effect for smooth transition
+import Loading from "../Others/Loading";
 
 const Reviews = () => {
   const axiosPublic = useAxiosPublic();
@@ -40,7 +41,7 @@ const Reviews = () => {
     duration: 3000, // Set autoplay duration (3 seconds)
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading/>;
   if (isError) return <div>Error fetching reviews.</div>;
   if (!reviews?.length) return null;
 

@@ -1,20 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from './useAxiosPublic';
 
-const useClasses = (search) => {
+const useClasses = (search, page, limit) => {
     const axiosPublic = useAxiosPublic();
 
     const { data, error, isLoading } = useQuery({
-        queryKey: ['classes', search],
+        queryKey: ["classes", search, page],
         queryFn: async () => {
-            const response = await axiosPublic.get('/classes', {
-                params: { search }  // Send search term as a query parameter
+            const response = await axiosPublic.get("/classes", {
+                params: { search, page, limit }
             });
-            return response.data;
+            return response.data; // Now returns `{ total, classes }`
         }
     });
 
-    return { data, error, isLoading };
+    return { data: data?.classes, total: data?.total, error, isLoading };
 };
 
 export default useClasses;
+

@@ -6,6 +6,7 @@ import useAuth from "../../../../hooks/useAuth";
 import { useState } from "react";
 import Rating from "react-rating";
 import Swal from "sweetalert2";
+import Loading from "../../../Others/Loading";
 
 const BookedTrainer = () => {
   const { user } = useAuth();
@@ -15,7 +16,11 @@ const BookedTrainer = () => {
   const [reviewText, setReviewText] = useState("");
 
   // Fetch booked trainer info
-  const { data: bookedTrainer, isLoading, error } = useQuery({
+  const {
+    data: bookedTrainer,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["trainer", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/payment?email=${user.email}`);
@@ -25,7 +30,11 @@ const BookedTrainer = () => {
   });
 
   // Fetch existing review
-  const { data: review, isLoading: reviewLoading,refetch } = useQuery({
+  const {
+    data: review,
+    isLoading: reviewLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["review", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/review?email=${user.email}`);
@@ -33,13 +42,22 @@ const BookedTrainer = () => {
     },
     enabled: !!user?.email,
   });
-  console.log(review,user.email)
+  console.log(review, user.email);
 
-  if (isLoading || reviewLoading) return <p className="text-center">Loading...</p>;
-  if (error) return <p className="text-center text-red-500">Error loading data</p>;
-  if (!bookedTrainer) return <p className="text-center">No trainer booked.</p>;
- 
-  const { trainerName, packageName, packagePrice, slotName, userEmail, userName, classId } = bookedTrainer;
+  if (isLoading || reviewLoading) return <Loading />;
+  if (error)
+    return <p className="text-center text-red-500">Error loading data</p>;
+
+
+  const {
+    trainerName,
+    packageName,
+    packagePrice,
+    slotName,
+    userEmail,
+    userName,
+    classId,
+  } = bookedTrainer;
 
   // If review data is an array, get the first review
 
@@ -56,7 +74,7 @@ const BookedTrainer = () => {
 
     const reviewData = {
       trainerId: classId,
-      userName:userName,
+      userName: userName,
       userEmail: user.email,
       rating,
       reviewText,
@@ -72,7 +90,7 @@ const BookedTrainer = () => {
       setIsModalOpen(false);
       setReviewText("");
       setRating(0);
-      refetch()
+      refetch();
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -88,15 +106,27 @@ const BookedTrainer = () => {
         <title>FitStat | Booked Trainer</title>
       </Helmet>
       <DashboardTitle title="Booked Trainer" />
-
-      <div className="w-4/5 mx-auto border p-6 rounded-lg shadow-md bg-white dark:bg-gray-800">
-        <h2 className="text-xl font-semibold text-center">Trainer Information</h2>
+   
+   {bookedTrainer?<> <div className="w-4/5 mx-auto border p-6 rounded-lg shadow-md bg-white dark:bg-gray-800">
+        <h2 className="text-xl font-semibold text-center">
+          Trainer Information
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-          <p><strong>Trainer Name:</strong> {trainerName}</p>
-          <p><strong>Package:</strong> {packageName}</p>
-          <p><strong>Price:</strong> ${packagePrice}</p>
-          <p><strong>Slot:</strong> {slotName}</p>
-          <p><strong>Booked By:</strong> {userName} ({userEmail})</p>
+          <p>
+            <strong>Trainer Name:</strong> {trainerName}
+          </p>
+          <p>
+            <strong>Package:</strong> {packageName}
+          </p>
+          <p>
+            <strong>Price:</strong> ${packagePrice}
+          </p>
+          <p>
+            <strong>Slot:</strong> {slotName}
+          </p>
+          <p>
+            <strong>Booked By:</strong> {userName} ({userEmail})
+          </p>
         </div>
 
         <div className="mt-6 text-center">
@@ -109,20 +139,33 @@ const BookedTrainer = () => {
                 <Rating
                   initialRating={review.rating}
                   readonly
-                  emptySymbol={<span className="text-gray-400 text-2xl">☆</span>}
-                  fullSymbol={<span className="text-yellow-400 text-2xl">★</span>}
+                  emptySymbol={
+                    <span className="text-gray-400 text-2xl">☆</span>
+                  }
+                  fullSymbol={
+                    <span className="text-yellow-400 text-2xl">★</span>
+                  }
                 />
               </div>
               <p className="mt-1">{review.reviewText}</p>
             </div>
           ) : (
             // If no review, show "Write a Review" button
-            <button onClick={() => setIsModalOpen(true)} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+            >
               Write a Review
             </button>
           )}
         </div>
-      </div>
+      </div></>:(
+          <div className="flex justify-center h-[60vh] items-center">
+          <p>You don't have any booked Trainers !</p>
+        </div>
+        )}
+     
+
 
       {/* Tailwind CSS Modal */}
       {isModalOpen && (

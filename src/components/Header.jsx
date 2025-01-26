@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAuth from "../hooks/useAuth";
-import useTheUser from "../hooks/useTheUser";
+
+import logo from "../assets/images/logo.png";
+import usePublicUser from "../hooks/usePublicUser";
 
 const getLinkClass = (isActive) =>
   `${
@@ -22,7 +24,7 @@ const MenuItem = ({ children, delay }) => (
 const Header = () => {
   const { user: authUser, logOutUser } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  const [user] = useTheUser();
+  const [user] = usePublicUser();
   const [redirectPath, setRedirectPath] = useState("/dashboard");
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -111,7 +113,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div>
-            <h3 className="text-2xl font-medium text-gray-800">fitStat</h3>
+            <h3 className="text-2xl flex items-center gap-2 font-medium text-gray-800"><img src={logo} className="w-12" alt="logo"/>fitStat</h3>
           </div>
 
           <ul className="hidden md:flex gap-6 lg:text-lg items-center">{middleLinks}</ul>

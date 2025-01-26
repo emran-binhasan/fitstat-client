@@ -9,6 +9,7 @@ import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
 import { FaCalendarAlt } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
+import Loading from "../Others/Loading";
 
 const TrainerBooking = () => {
 
@@ -43,7 +44,7 @@ const TrainerBooking = () => {
   console.log(classLists);
   console.log(classLists?.value)
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading/>;
   if (error) return <p>Error loading trainer data!</p>;
   if (!trainerData) return <p>No trainer found.</p>;
 

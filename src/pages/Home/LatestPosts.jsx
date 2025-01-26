@@ -23,7 +23,7 @@ const Community = () => {
       <h2 className="text-3xl font-semibold text-gray-800 mb-6">
           Forum Posts
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {forums.map((post, index) => (
             <Reveal key={post._id} effect="fadeInRight" delay={index * 200}>
               <ForumPost post={post} />
