@@ -3,6 +3,7 @@ import DashboardTitle from "../../../../components/DashboardTitle";
 import useTheUser from "../../../../hooks/useTheUser";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ManageSlot = () => {
   const [user,refetch] = useTheUser();
@@ -17,14 +18,48 @@ const ManageSlot = () => {
 const axiosSecure = useAxiosSecure()
 console.log(slots);
 
-const handleRemoveSlot =async (slotNameToRemove) => {
-  console.log(slotNameToRemove)
-  const res = await axiosSecure.patch(`/user/slot/remove/${user._id}`,{slotNameToRemove});
-  console.log(res)
-  if(res.data.modifiedCount){
-    refetch()
+const handleRemoveSlot = async (slotNameToRemove) => {
+  try {
+    console.log(slotNameToRemove);
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    });
+
+    if (result.isConfirmed) {
+      const response = await axiosSecure.patch(`/user/slot/remove/${user._id}`, { slotNameToRemove });
+      console.log(response);
+
+      if (response.data.modifiedCount) {
+        refetch();
+        Swal.fire({
+          title: "Removed!",
+          text: "Successfully removed the slot.",
+          icon: "success"
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to remove the slot.",
+          icon: "error"
+        });
+      }
+    }
+  } catch (error) {
+    console.error("Error removing slot:", error);
+    Swal.fire({
+      title: "Error!",
+      text: "Something went wrong. Please try again later.",
+      icon: "error"
+    });
   }
-}
+};
+
 
   return (
     <div className="flex flex-col justify-center items-center border">

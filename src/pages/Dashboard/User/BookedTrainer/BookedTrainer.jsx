@@ -25,23 +25,23 @@ const BookedTrainer = () => {
   });
 
   // Fetch existing review
-  const { data: reviews, isLoading: reviewLoading } = useQuery({
+  const { data: review, isLoading: reviewLoading,refetch } = useQuery({
     queryKey: ["review", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/reviews?email=${user.email}`);
+      const res = await axiosSecure.get(`/review?email=${user.email}`);
       return res.data;
     },
     enabled: !!user?.email,
   });
+  console.log(review,user.email)
 
   if (isLoading || reviewLoading) return <p className="text-center">Loading...</p>;
   if (error) return <p className="text-center text-red-500">Error loading data</p>;
   if (!bookedTrainer) return <p className="text-center">No trainer booked.</p>;
-
+ 
   const { trainerName, packageName, packagePrice, slotName, userEmail, userName, classId } = bookedTrainer;
 
   // If review data is an array, get the first review
-  const review = Array.isArray(reviews) && reviews.length > 0 ? reviews[0] : null;
 
   // Submit Review
   const handleReviewSubmit = async () => {
@@ -56,7 +56,7 @@ const BookedTrainer = () => {
 
     const reviewData = {
       trainerId: classId,
-      trainerName,
+      userName:userName,
       userEmail: user.email,
       rating,
       reviewText,
@@ -72,6 +72,7 @@ const BookedTrainer = () => {
       setIsModalOpen(false);
       setReviewText("");
       setRating(0);
+      refetch()
     } catch (err) {
       Swal.fire({
         icon: "error",

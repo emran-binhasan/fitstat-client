@@ -1,13 +1,13 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAuth from "../hooks/useAuth";
-import { BookingContext } from "../context/BookingProvider";
+import useTheUser from "../hooks/useTheUser";
 
 const getLinkClass = (isActive) =>
   `${
-    isActive ? "text-blue-600" : "text-gray-700"
-  } hover:text-blue-600 transition-colors block py-2`;
+    isActive ? "text-orange-600" : "text-gray-700"
+  } hover:text-orange-600 transition-colors block py-2`;
 
 const MenuItem = ({ children, delay }) => (
   <motion.div
@@ -20,11 +20,33 @@ const MenuItem = ({ children, delay }) => (
 );
 
 const Header = () => {
-  const { user, logOutUser } = useAuth();
-
+  const { user: authUser, logOutUser } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const [user] = useTheUser();
+  const [redirectPath, setRedirectPath] = useState("/dashboard");
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  useEffect(() => {
+    if (user.role === "admin") setRedirectPath("/dashboard/balance");
+    else if (user.role === "trainer") setRedirectPath("/dashboard/slots");
+    else setRedirectPath("/dashboard/user-profile");
+  }, [user.role]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -66,10 +88,10 @@ const Header = () => {
           Community
         </NavLink>
       </MenuItem>
-      {user && (
+      {authUser && (
         <MenuItem delay={0.5}>
           <NavLink
-            to="/dashboard/balance"
+            to={redirectPath}
             className={({ isActive }) => getLinkClass(isActive)}
             onClick={() => setIsOpen(false)}
           >
@@ -81,29 +103,38 @@ const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/50 border-b border-black">
+    <header
+      className={`sticky top-0 z-50 w-full border-b border-black ${
+        isScrolled ? "bg-white" : "bg-white/40 "
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div>
             <h3 className="text-2xl font-medium text-gray-800">fitStat</h3>
           </div>
 
-          <ul className="hidden md:flex gap-6 items-center">{middleLinks}</ul>
+          <ul className="hidden md:flex gap-6 lg:text-lg items-center">{middleLinks}</ul>
 
           <div className="hidden md:block">
-            {user && user?.email ? (
-              <div className="flex items-center"><img className="border w-10 h-10 mx-2 rounded-full" src={user?.photoURL} alt="photo" />
-               <button
-                onClick={logOutUser}
-                className="px-4 py-2 hover:bg-gray-100 rounded transition-colors"
-              >
-                LogOut
-              </button></div>
-             
+            {authUser && authUser?.email ? (
+              <div className="flex items-center">
+                <img
+                  className="border w-10 h-10 mx-2 rounded-full"
+                  src={authUser?.photoURL}
+                  alt="photo"
+                />
+                <button
+                  onClick={logOutUser}
+                  className="px-4 py-2 hover:bg-gray-100 rounded transition-colors"
+                >
+                  LogOut
+                </button>
+              </div>
             ) : (
               <NavLink
                 to="/login"
-                className="px-4 py-2 hover:bg-gray-100 rounded transition-colors"
+                className="px-4 py-2 lg:text-lg hover:bg-gray-100 rounded transition-colors"
               >
                 Login
               </NavLink>
@@ -136,14 +167,14 @@ const Header = () => {
           {middleLinks}
           <MenuItem delay={0.6}>
             <div className="pt-4 border-t border-gray-200">
-              {user ? (
+              {authUser ? (
                 <>
                   <button
                     onClick={() => {
                       logOutUser();
                       setIsOpen(false);
                     }}
-                    className="text-gray-700 hover:text-blue-600 transition-colors block py-2"
+                    className="text-gray-700 hover:text-orange-600 transition-colors block py-2"
                   >
                     LogOut
                   </button>
@@ -151,7 +182,7 @@ const Header = () => {
               ) : (
                 <NavLink
                   to="/login"
-                  className="text-gray-700 hover:text-blue-600 transition-colors block py-2"
+                  className="text-gray-700 hover:text-orange-600 transition-colors block py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   Login

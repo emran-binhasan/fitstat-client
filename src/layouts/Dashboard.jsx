@@ -10,12 +10,12 @@ import TrainerSidebar from "../pages/Dashboard/Sidebars/TrainerSidebar";
 import MemberSidebar from "../pages/Dashboard/Sidebars/MemberSidebar";
 import { useQuery } from '@tanstack/react-query';
 import useTheUser from "../hooks/useTheUser";
+import { useEffect, useState } from "react";
 
 
 
 const Dashboard = () => {
  const [user] = useTheUser();
- 
 
 
 

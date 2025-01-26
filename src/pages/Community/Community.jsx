@@ -3,17 +3,27 @@ import PageTitle from "../../components/PageTitle";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Helmet } from "react-helmet-async";
 import ForumPost from "./ForumPost";
+import { useState } from "react";
 
 const Community = () => {
+    const [currentPage, setCurrentPage]= useState(1);
+
   const axiosPublic = useAxiosPublic();
   const { data: forums = [] } = useQuery({
-    queryKey: ["forums"],
+    queryKey: ["forums",currentPage],
     queryFn: async () => {
-      const res = await axiosPublic.get("/forums");
+      const res = await axiosPublic.get(`/forums?page=${currentPage}`);
       return res.data;
     },
+    keepPreviousData:true,
   });
-  console.log(forums);
+  const {posts = [],totalPosts = 0,totalPages = 0} = forums;
+
+  const handlePageChange = (page) => {
+    if(page >= 1 && page <= totalPages){
+        setCurrentPage(page)
+    }
+  }
   return (
     <div className="container mx-auto py-5">
       <Helmet>
@@ -23,13 +33,30 @@ const Community = () => {
      
   
     <div className="container mx-auto p-6">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-6">
-          Forum Posts
-        </h2>
+       
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {forums.map((post) => (
+          {posts.map((post) => (
             <ForumPost key={post._id} post={post} />
           ))}
+        </div>
+        <div className="mt-6 flex justify-center space-x-4">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="px-4 py-2 bg-gray-300 rounded-lg disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="text-xl">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 bg-gray-300 rounded-lg disabled:opacity-50"
+          >
+            Next
+          </button>
         </div>
      
     </div>

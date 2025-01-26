@@ -102,6 +102,8 @@ const Router = createBrowserRouter([
                 path:'/dashboard/add-class',
                 element:<AddClass/>
             },
+            
+            // ADMIN AND TRAINER
             {
                 path:'/dashboard/add-forum',
                 element:<AddForum/>
