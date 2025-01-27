@@ -15,7 +15,7 @@ const slides = [
     title: "Transform Your Body",
     description: "Get fit with personalized workouts from top trainers.",
     buttonText: "Discover Programs",
-    link: "/programs",
+    link: "/trainers",
   },
   {
     video: 'https://i.imgur.com/msUMH3u.mp4',

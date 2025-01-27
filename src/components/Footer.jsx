@@ -26,28 +26,29 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
             <h3 className="font-medium mb-4">Quick Links</h3>
             <ul>
-              <li className="mb-2">
+            <li className="mb-2">
                 <a
-                  href="/features"
+                  href="https://google.com"
                   className="transition-colors duration-300 hover:text-emerald-500"
                 >
-                  Features
+                  Google
                 </a>
               </li>
               <li className="mb-2">
                 <a
-                  href="/pricing"
+                  href="https://youtube.com"
                   className="transition-colors duration-300 hover:text-emerald-500"
                 >
-                  Pricing
+                  Youtube
                 </a>
               </li>
+             
               <li className="mb-2">
                 <a
-                  href="/contact"
+                  href="https://wikipedia.com"
                   className="transition-colors duration-300 hover:text-emerald-500"
                 >
-                  Contact
+                  Wikipedia
                 </a>
               </li>
             </ul>
@@ -74,25 +75,25 @@ const Footer = () => {
             <h3 className=" font-medium mb-4">Follow Us</h3>
             <div className="flex gap-4">
               <a
-                href="https://facebook.com/fitstat"
+                href="https://facebook.com"
                 className="text-orange-500 hover:text-emerald-300 transition-colors duration-300"
               >
                 <FaFacebook size={24} />
               </a>
               <a
-                href="https://instagram.com/fitstat"
+                href="https://instagram.com"
                 className="text-orange-500 hover:text-emerald-300 transition-colors duration-300"
               >
                 <FaInstagram size={24} />
               </a>
               <a
-                href="https://twitter.com/fitstat"
+                href="https://twitter.com"
                 className="text-orange-500 hover:text-emerald-300 transition-colors duration-300"
               >
                 <FaTwitter size={24} />
               </a>
               <a
-                href="https://linkedin.com/company/fitstat"
+                href="https://linkedin.com"
                 className="text-orange-500 hover:text-emerald-300 transition-colors duration-300"
               >
                 <FaLinkedin size={24} />
