@@ -1,5 +1,5 @@
 import axios from 'axios'
-const axiosPublic = axios.create({baseURL:'http://localhost:4000'})
+const axiosPublic = axios.create({baseURL:'https://fistat.vercel.app'})
 
 const useAxiosPublic = () => {
     return axiosPublic

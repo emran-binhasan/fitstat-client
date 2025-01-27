@@ -29,9 +29,10 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    if (user.role === "admin") setRedirectPath("/dashboard/balance");
-    else if (user.role === "trainer") setRedirectPath("/dashboard/slots");
-    else setRedirectPath("/dashboard/user-profile");
+    if (user?.role === "admin") setRedirectPath("/dashboard/balance");
+    else if (user?.role === "trainer") setRedirectPath("/dashboard/slots");
+    else if (user?.role === "member") setRedirectPath("/dashboard/user-profile");
+    else setRedirectPath("/dashboard");
   }, [user.role]);
 
   useEffect(() => {

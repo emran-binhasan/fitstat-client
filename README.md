@@ -1,5 +1,4 @@
 # FitStat
-
 FitStat is a modern fitness tracking web application designed to help users monitor their workouts, track statistics, and achieve their fitness goals. The platform offers a rich set of features, including user authentication, data visualization, payment integration for premium services, and much more.
 
 ## Admin Credentials

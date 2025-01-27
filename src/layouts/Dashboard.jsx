@@ -11,10 +11,13 @@ import TrainerSidebar from "../pages/Dashboard/Sidebars/TrainerSidebar";
 import MemberSidebar from "../pages/Dashboard/Sidebars/MemberSidebar";
 import useTheUser from "../hooks/useTheUser";
 import { useState } from "react";
+import Loading from "../pages/Others/Loading";
 const Dashboard = () => {
-  const [user] = useTheUser();
+  const [user,,isLoading] = useTheUser();
   const [isOpen, setIsOpen] = useState(false); // Sidebar Toggle
-
+  if(isLoading){
+    return <Loading/>
+  }
   const handleSidebarClose = () => {
     setIsOpen(false); // Close sidebar when link is clicked
   };
