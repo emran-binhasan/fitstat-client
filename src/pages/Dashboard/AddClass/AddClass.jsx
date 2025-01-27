@@ -5,8 +5,10 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react"; // Importing useState for loading state
 
 const AddClass = () => {
+  const [isLoading, setIsLoading] = useState(false); // For managing loading state
   const {
     register,
     handleSubmit,
@@ -16,30 +18,50 @@ const AddClass = () => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const imageUploadAPI = useImageAPI();
+
   const onSubmit = async (data) => {
-    const imgRes = await axiosPublic.post(
-      imageUploadAPI,
-      { image: data.image[0] },
-      {
-        headers: { "Content-Type": "multipart/form-data" },
+    setIsLoading(true); // Set loading state to true
+    try {
+      const imgRes = await axiosPublic.post(
+        imageUploadAPI,
+        { image: data.image[0] },
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      if (imgRes.data?.data?.display_url) {
+        const classData = {
+          name: data.name,
+          image: imgRes.data.data.display_url,
+          details: data.details,
+        };
+
+        const res = await axiosSecure.post(`/classes`, classData);
+        if (res.data.insertedId) {
+          reset();
+          Swal.fire({
+            title: "Successful",
+            text: "Class successfully added!",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      } else {
+        throw new Error("Image upload failed");
       }
-    );
-    const classData = {
-      name: data.name,
-      image: imgRes.data.data.display_url,
-      details: data.details,
-    };
-    const res = await axiosSecure.post(`/classes`, classData);
-    if (res.data.insertedId) {
-      reset();
+    } catch (error) {
       Swal.fire({
-        title: "Successful",
-        text: "Account successfully created!",
-        icon: "success",
-        confirmButtonText: "Ok",
+        title: "Error",
+        text: "There was an error while uploading the class details.",
+        icon: "error",
+        confirmButtonText: "Try Again",
       });
+    } finally {
+      setIsLoading(false); // Set loading state to false after the request is done
     }
   };
+
   return (
     <div className="flex flex-col justify-center items-center border">
       <Helmet>
@@ -90,9 +112,12 @@ const AddClass = () => {
 
         <button
           type="submit"
-          className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-700 transition duration-500"
+          disabled={isLoading} // Disable the button when loading
+          className={`w-full bg-green-500 text-white py-2 rounded transition duration-500 ${
+            isLoading ? "bg-gray-400 cursor-not-allowed" : "hover:bg-green-700"
+          }`}
         >
-          Add Class
+          {isLoading ? "Adding Class..." : "Add Class"}
         </button>
       </form>
     </div>

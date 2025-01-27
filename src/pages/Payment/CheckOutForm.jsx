@@ -2,8 +2,10 @@ import { useStripe, CardElement, useElements } from "@stripe/react-stripe-js";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutForm = ({ bookingData }) => {
+  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const stripe = useStripe();
   const elements = useElements();
@@ -32,8 +34,8 @@ const CheckOutForm = ({ bookingData }) => {
       setLoading(false);
     } else if (paymentIntent.status === "succeeded") {
       Swal.fire({
-        title: "Removed!",
-        text: "Successfully removed the slot.",
+        title: "Congratulations!",
+        text: "Successfully booked the slot.",
         icon: "success",
       });
       await axiosSecure.post("/payments", {
@@ -51,7 +53,7 @@ const CheckOutForm = ({ bookingData }) => {
     }
 
     await axiosSecure.patch(`/class/${bookingData.classId}`);
-
+    navigate('/')
     setLoading(false);
   };
 

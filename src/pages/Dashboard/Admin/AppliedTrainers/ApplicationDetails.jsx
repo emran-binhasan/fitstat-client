@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
@@ -12,6 +12,7 @@ const ApplicationDetails = () => {
   const [feedback, setFeedback] = useState("");
   const param = useParams();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate()
   console.log(param.id);
   const {data:appDetail,refetch} = useQuery({
     queryKey:['details'],
@@ -76,6 +77,7 @@ const ApplicationDetails = () => {
     setModalIsOpen(true);
     setError(""); // Clear previous errors
     setFeedback(""); // Reset feedback
+    navigate("/dashboard/all-trainers")
   };
 
   const submitRejection = () => {
@@ -100,6 +102,7 @@ const ApplicationDetails = () => {
         }
         setModalIsOpen(false);
         setFeedback("");
+
       });
   };
 

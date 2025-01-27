@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import useTheUser from "../hooks/useTheUser";
 import Loading from "../pages/Others/Loading";
 
-const AdminRoute = ({children}) => {
+const MemberRoute = ({children}) => {
     const navigate = useNavigate()
     const [user,,isLoading] = useTheUser();
-    if(user.role === 'admin'){
-         return children
+    if(user.role === 'member'){
+        return children
     }
     if(isLoading){
         return <Loading/>
@@ -14,4 +14,4 @@ const AdminRoute = ({children}) => {
     return navigate('/')
 };
 
-export default AdminRoute;
+export default MemberRoute;

@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import DashboardTitle from "../../../../components/DashboardTitle";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
+
 const Subscribers = () => {
   const axiosSecure = useAxiosSecure();
   const { data: subscribers = [], refetch } = useQuery({
@@ -11,55 +13,66 @@ const Subscribers = () => {
       return res.data;
     },
   });
+
+  const handleRemoveSubscriber = async(email) =>{
+    const res = await axiosSecure.delete(`/newsletters?email=${email}`);
+    if(res.data.deletedCount){
+      refetch()
+       Swal.fire({
+                  title: "Deleted!",
+                  text: "Subscriber removed succesfully",
+                  icon: "success",
+                });
+    }
+  }
+
   return (
-    <div className="flex flex-col justify-center items-center border">
+    <div className="flex flex-col justify-center items-center border p-4">
       <Helmet>
         <title>FitStat | Subscribers</title>
       </Helmet>
-      <DashboardTitle title="subscribers" />
-      <div className="w-4/5 mx-auto border">
-        <div className="flex items-center justify-around p-4">
+      
+      <DashboardTitle title="Subscribers" />
+
+      <div className="w-full max-w-4xl mx-auto border p-4 bg-white shadow-lg rounded-lg">
+      <div className="flex items-center justify-around p-4">
           <h3>TOTAL SUBSCRIBERS : {subscribers.length} </h3>
         </div>
-        <table className="w-full bg-white border border-gray-200 shadow-lg rounded-lg overflow-hidden">
-          <thead className="bg-gray-100 w-full">
-            <tr>
-              <th className="py-3 px-2 md:px-4 text-left  font-semibold text-gray-700 ">
-                NAME
-              </th>
-              <th className="py-3 px-2 md:px-4 text-left font-semibold text-gray-700">
-                EMAIL
-              </th>
 
-              <th className="py-3 px-2 md:px-4 text-left font-semibold text-gray-700">
-                ACTION
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {subscribers.map((subscriber, index) => (
-              <tr
-                key={subscriber._id}
-                className="border-t border-gray-200 hover:bg-gray-50"
-              >
-                <td className="py-2 px-2 md:px-4 text-sm text-gray-700 hidden sm:table-cell">
-                  <span className="font-medium">{index + 1} .</span>{" "}
-                  {subscriber.name}
-                </td>
-
-                <td className="py-2 px-2 md:px-4  text-gray-700">
-                  {subscriber.email}
-                </td>
-
-                <td className="py-2 px-2 space-y-1 space-x-2 ">
-                  <button className="bg-red-500 px-3 py-1 rounded-md text-white">
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {subscribers.length === 0 ? (
+          <p className="text-gray-500 text-center">No subscribers yet.</p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full bg-white border border-gray-200 shadow rounded-lg">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="py-3 px-4 text-left font-semibold text-gray-700 hidden sm:table-cell">#</th>
+                  <th className="py-3 px-4 text-left font-semibold text-gray-700">Name</th>
+                  <th className="py-3 px-4 text-left font-semibold text-gray-700">Email</th>
+                  <th className="py-3 px-4 text-left font-semibold text-gray-700">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {subscribers.map((subscriber, index) => (
+                  <tr key={subscriber._id} className="border-t border-gray-200 hover:bg-gray-50">
+                    <td className="py-2 px-4 text-sm text-gray-700 hidden sm:table-cell">{index + 1}</td>
+                    <td className="py-2 px-4 text-gray-700">{subscriber.name}</td>
+                    <td className="py-2 px-4 text-gray-700">{subscriber.email}</td>
+                    <td className="py-2 px-4">
+                      <button
+                      onClick={()=>handleRemoveSubscriber(subscriber.email)}
+                        className="bg-red-500 px-3 py-1 rounded-md text-white hover:bg-red-600 transition"
+                        aria-label="Remove Subscriber"
+                      >
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

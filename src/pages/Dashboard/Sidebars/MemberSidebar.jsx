@@ -5,13 +5,34 @@ import { MdSaveAs } from "react-icons/md";
 const MemberSidebar = () => {
   return (
     <>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/user-profile">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/user-profile"
+      >
         <FaUser /> Profile
       </NavLink>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/activity">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/activity"
+      >
         <FaHistory /> Activity Log
       </NavLink>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/booked">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/booked"
+      >
         <MdSaveAs /> Booked Trainers
       </NavLink>
     </>

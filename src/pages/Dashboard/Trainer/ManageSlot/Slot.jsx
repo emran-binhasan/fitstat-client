@@ -22,22 +22,20 @@ const Slot = ({ slot }) => {
     : [];
 
   // Fetch booked slot data based on classId
- 
-    // Handle opening the modal when the eye icon is clicked
-    const handleShowModal = async() => {
-          const res = await axiosSecure.get('/booked-slot', { params: { classId: slot?.selectedClasses?.value } });
-          const booked = res.data;
-        
-      if (booked) {
-        Swal.fire({
-          title: "Slot Booked!",
-          text: `This slot is booked by ${booked[0].userName}.`,
-          icon: "info",
-          confirmButtonText: "Okay",
-        });
-      }
-    };
-  
+  const handleShowModal = async () => {
+    const res = await axiosSecure.get("/booked-slot", { params: { classId: slot?.selectedClasses?.value } });
+    const booked = res.data;
+    console.log(booked);
+    if (booked) {
+      Swal.fire({
+        title: "Slot Booked!",
+        text: `This slot is booked by ${booked[0].userName}.`,
+        icon: "info",
+        confirmButtonText: "Okay",
+      });
+    }
+  };
+
   // Remove a selected slot
   const handleRemoveSlot = async (slotNameToRemove) => {
     try {
@@ -78,19 +76,16 @@ const Slot = ({ slot }) => {
     }
   };
 
-
-
   // Render the component
   return (
     <tr key={slot._id} className="border-t border-gray-200 hover:bg-gray-50">
-      <td className="py-2 px-2 md:px-4 text-sm text-gray-700 hidden sm:table-cell">{slot.slotDay}</td>
+      {/* Updated column visibility handling */}
+      <td className="py-2 px-2 md:px-4 text-sm text-gray-700">{slot.slotDay}</td>
       <td className="py-2 px-2 md:px-4 text-gray-700">{slot.slotName}</td>
       <td className="py-2 px-2 md:px-4 text-gray-700">{slot.slotTime}</td>
       <td className="py-2 px-2 md:px-4 text-gray-700">{slot?.selectedClasses?.label || "No Classes"}</td>
       <td className="py-2 flex gap-1 items-center px-2 space-y-1 space-x-2">
-       
-          <FaEye onClick={handleShowModal} className="cursor-pointer text-blue-500" />
- 
+        <FaEye onClick={handleShowModal} className="cursor-pointer text-blue-500" />
         <button onClick={() => handleRemoveSlot(slot.slotName)} className="bg-red-500 px-3 py-1 rounded-md text-white">
           Remove
         </button>
@@ -100,3 +95,4 @@ const Slot = ({ slot }) => {
 };
 
 export default Slot;
+

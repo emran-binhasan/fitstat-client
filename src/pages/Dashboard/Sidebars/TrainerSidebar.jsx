@@ -6,13 +6,34 @@ import { IoPeople } from "react-icons/io5";
 const TrainerSidebar = () => {
   return (
     <>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/slots">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/slots"
+      >
         <FaMoneyCheck /> Manage Slots
       </NavLink>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/add-slot">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/add-slot"
+      >
         <MdOutlineUnsubscribe /> Add Slots
       </NavLink>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/add-forum">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/add-forum"
+      >
         <IoPeople /> Add Forum
       </NavLink>
     </>

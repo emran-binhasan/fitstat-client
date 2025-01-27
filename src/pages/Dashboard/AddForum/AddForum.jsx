@@ -9,7 +9,7 @@ import useAuth from "../../../hooks/useAuth";
 import useTheUser from "../../../hooks/useTheUser";
 
 const AddForum = () => {
-  const [user] = useTheUser();
+  const [user] = useTheUser(); // Fetch user data
   const {
     register,
     handleSubmit,
@@ -19,30 +19,54 @@ const AddForum = () => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const imageUploadAPI = useImageAPI();
+
   const onSubmit = async (data) => {
-    const imgRes = await axiosPublic.post(
-      imageUploadAPI,
-      { image: data.image[0] },
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
-    const forumData = {
-      title: data.title,
-      image: imgRes.data.data.display_url,
-      details: data.details,
-      author:user.name,
-      role:user.role,
-      postedAt:new Date()
-    };
-    const res = await axiosSecure.post(`/forums`, forumData);
-    if (res.data.insertedId) {
-      reset();
+    if (!user) {
+      // Ensure user data is available before submitting the form
       Swal.fire({
-        title: "Successful",
-        text: "Forum successfully created!",
-        icon: "success",
+        title: "Error",
+        text: "User data is not available. Please try again later.",
+        icon: "error",
         confirmButtonText: "Ok",
+      });
+      return;
+    }
+
+    try {
+      const imgRes = await axiosPublic.post(
+        imageUploadAPI,
+        { image: data.image[0] },
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      const forumData = {
+        title: data.title,
+        image: imgRes.data.data.display_url,
+        details: data.details,
+        author: user.name,
+        role: user.role,
+        postedAt: new Date(),
+      };
+
+      const res = await axiosSecure.post(`/forums`, forumData);
+
+      if (res.data.insertedId) {
+        reset();
+        Swal.fire({
+          title: "Successful",
+          text: "Forum successfully created!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: "There was an error while creating the forum.",
+        icon: "error",
+        confirmButtonText: "Try Again",
       });
     }
   };
@@ -63,13 +87,13 @@ const AddForum = () => {
               Forum Title *
             </label>
             <input
-              {...register("title", { required: "Class name is required" })}
+              {...register("title", { required: "Forum title is required" })}
               type="text"
-              placeholder="Enter class name"
+              placeholder="Enter forum title"
               className="w-full p-2 border rounded focus:ring focus:ring-blue-300"
             />
-            {errors.name && (
-              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            {errors.title && (
+              <p className="text-red-500 text-sm">{errors.title.message}</p>
             )}
           </div>
           <div>
@@ -89,7 +113,7 @@ const AddForum = () => {
         <div>
           <label className="block text-gray-600 font-medium">Details *</label>
           <textarea
-            {...register("details", { required: "Details is required" })}
+            {...register("details", { required: "Details are required" })}
             placeholder="Description in details...."
             className="w-full p-2 border rounded focus:ring focus:ring-blue-300 h-32"
           />
@@ -99,7 +123,7 @@ const AddForum = () => {
           type="submit"
           className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-700 transition duration-500"
         >
-          Add Class
+          Add Forum
         </button>
       </form>
     </div>

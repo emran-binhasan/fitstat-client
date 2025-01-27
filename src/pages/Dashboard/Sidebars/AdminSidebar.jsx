@@ -7,22 +7,64 @@ import { BiMessageAltDetail } from "react-icons/bi";
 const AdminSidebar = () => {
   return (
     <>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/balance">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/balance"
+      >
         <FaMoneyCheck /> Balance
       </NavLink>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/subscribers">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/subscribers"
+      >
         <MdOutlineUnsubscribe /> Subscribers
       </NavLink>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/all-trainers">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/all-trainers"
+      >
         <IoPeople /> All Trainers
       </NavLink>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/applications">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/applications"
+      >
         <BiMessageAltDetail /> Applied Trainers
       </NavLink>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/add-class">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/add-class"
+      >
         <MdAddChart /> Add Class
       </NavLink>
-      <NavLink className="px-2 py-1.5 flex gap-2 items-center" to="/dashboard/add-forum">
+      <NavLink
+        className={({ isActive }) =>
+          `px-3 py-2 flex gap-3 items-center ${
+            isActive ? "bg-gray-200 text-orange-600" : "text-gray-700 hover:bg-gray-100"
+          } rounded-lg`
+        }
+        to="/dashboard/add-forum"
+      >
         <IoPeople /> Add Forum
       </NavLink>
     </>
