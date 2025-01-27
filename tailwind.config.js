@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'cta': 'url(./src/assets/images/cta.jpg)'
+        'cta': 'url(https://i.ibb.co.com/17dqhbf/cta.jpg)'
       },
       animation: {
         "rotate-fade": "rotateFade 1.5s ease-in-out",

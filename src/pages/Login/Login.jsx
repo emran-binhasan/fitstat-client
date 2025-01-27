@@ -21,7 +21,7 @@ const Login = () => {
       if (fireRes) {
         Swal.fire({
           title: 'Successful',
-          text: 'Account successfully created!',
+          text: 'Welcome !',
           icon: 'success',
           confirmButtonText: 'Ok',
         });

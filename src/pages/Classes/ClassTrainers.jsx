@@ -25,7 +25,7 @@ const ClassTrainers = ({ name,classId }) => {
     return (
         <>
          {trainers.length > 0 ? (
-                trainers.map(each =>  
+                trainers.slice(0,5).map(each =>  
                     <Link 
                     onClick={handleSelectedClass} 
                     to={`/trainer/${each._id}`} 

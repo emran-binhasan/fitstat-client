@@ -46,7 +46,8 @@ const Classes = () => {
                             <p className="text-sm text-gray-600 line-clamp-2">{each.details}</p>
                         </div>
                         <div className="border-b-2 mt-3 mb-2"></div>
-                        <div className="p-1 gap-2 flex items-center">
+                        <p className="px-3">Avaialble Trainers</p>
+                        <div className="px-3 py-1 gap-2 flex items-center">
                             <ClassTrainers name={each.name} classId={each._id} />
                         </div>
                     </div>
