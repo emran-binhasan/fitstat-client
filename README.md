@@ -8,6 +8,23 @@ FitStat is a modern fitness tracking web application designed to help users moni
 ## Live Site URL
 - **Live Site URL:** [https://fitstat.netlify.app](https://fitstat.netlify.app) *(Replace with actual live URL)*
 
+
+## 🚀 Live Demo
+[Live Site](https://fitstat.netlify.app)
+
+## 🖼️ Screenshot
+![Project screenshot](<Screenshot 2025-02-03 091432.png>)
+
+---
+
+## 🛠 Technologies Used
+
+- **Frontend:** React.js, Tailwind CSS
+- **Authentication:** Firebase Authentication
+- **Charts & Visualization:** Chart.js, React ChartJS-2
+- **Payments:** Stripe Integration
+- **Deployment:** Netlify
+
 ## Key Features
 
 - **User Authentication:** Register, login, and manage user accounts via Firebase Authentication.
@@ -21,3 +38,36 @@ FitStat is a modern fitness tracking web application designed to help users moni
 - **Notifications & Alerts:** Users receive alerts for workout reminders, activity milestones, and new updates.
 - **Admin Panel:** Admins can manage users, workouts, and payments from a comprehensive control panel.
 - **User Profile:** View and edit personal fitness information, including workout history and achievements.
+
+## 📦 Dependencies
+```json
+{
+  "dependencies": {
+    "react": "^18.3.1",
+    "firebase": "^11.0.2",
+    "react-chartjs-2": "^5.0.1",
+    "chart.js": "^4.4.0",
+    "tailwindcss": "^3.4.16",
+    "stripe": "^11.0.0"
+  }
+}
+```
+
+## 🛠 Installation & Setup
+
+Follow these steps to set up FitStat locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/emran-binhasan/fitstat-client
+
+# Navigate to the project directory
+cd FitStat
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+

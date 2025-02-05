@@ -26,7 +26,7 @@ const ForumPost = ({ post }) => {
 
   const handleUpvote = async () => {
     if(!user){
-      Swal.fire({
+    return  Swal.fire({
               title: "Sorry",
               text: "You must login to vote",
               icon: "error",
@@ -50,7 +50,7 @@ const ForumPost = ({ post }) => {
 
   const handleDownvote = async () => {
     if(!user){
-      Swal.fire({
+     return Swal.fire({
               title: "Sorry",
               text: "You must login to vote",
               icon: "error",
