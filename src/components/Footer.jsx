@@ -1,5 +1,6 @@
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/logo-dark.png";
+
 
 const Footer = () => {
   return (
@@ -11,10 +12,10 @@ const Footer = () => {
           <div className="col-span-1 flex flex-col items-start">
             <a
               href="/"
-              className="flex items-center gap-2 w-12 font-medium text-2xl"
+              className="flex items-center gap-1 font-medium text-2xl"
             >
               {/* Simple Logo, replace with your logo */}
-              <img src={logo} alt="logo" />
+              <img src={logo} className='w-10' alt="logo" />
               fitStat
             </a>
             <p className="mt-4 text-gray-400">

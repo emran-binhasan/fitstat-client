@@ -49,7 +49,7 @@ const Reviews = () => {
   return (
     <div className="py-8 ">
       <div className="container mx-auto text-center">
-        <AnimatedTitle title="What Our Members Say"/>
+        <AnimatedTitle title="What Our Members Say?"/>
 
         {/* Keen Slider */}
         <div ref={sliderRef} className="keen-slider">

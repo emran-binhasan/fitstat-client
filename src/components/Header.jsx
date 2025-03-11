@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import useAuth from "../hooks/useAuth";
 
 import logo from "../assets/images/logo.png";
+import logo2 from "../assets/images/logo-dark.png"
 import usePublicUser from "../hooks/usePublicUser";
 
 const Header = () => {
@@ -116,11 +117,11 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           <div>
             <h3
-              className={`text-2xl flex items-center gap-2 font-medium ${
+              className={`text-2xl flex items-center gap-1 font-medium ${
                 isScrolled ? "text-gray-800" : isHome ? "text-white" : "text-gray-800"
               }`}
             >
-              <img src={logo} className="w-12" alt="logo" />
+              <img src={isScrolled?logo2:isHome?logo:logo2} className="w-10" alt="logo" />
               fitStat
             </h3>
           </div>
@@ -171,27 +172,27 @@ const Header = () => {
 
           {/* Hamburger menu button */}
           <div className="md:hidden z-50">
-            <button
-              ref={hamburgerRef}
-              onClick={toggleMenu}
-              className={isScrolled ? "text-gray-800" : isHome ? "text-white" : "text-gray-800"}
-            >
-              <span
-                className={`block w-6 h-1 ${
-                  isScrolled ? "bg-gray-800" : isHome ? "bg-white" : "bg-gray-800"
-                } mb-1`}
-              ></span>
-              <span
-                className={`block w-6 h-1 ${
-                  isScrolled ? "bg-gray-800" : isHome ? "bg-white" : "bg-gray-800"
-                } mb-1`}
-              ></span>
-              <span
-                className={`block w-6 h-1 ${
-                  isScrolled ? "bg-gray-800" : isHome ? "bg-white" : "bg-gray-800"
-                }`}
-              ></span>
-            </button>
+           <button
+  ref={hamburgerRef}
+  onClick={toggleMenu}
+  className="w-8 h-8 flex items-center justify-center transition-all"
+>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-6 h-6"
+  >
+    <path
+      d={isOpen ? "M6 6L18 18M6 18L18 6" : "M4 6h16M4 12h16M4 18h16"}
+      stroke={isScrolled ? "#1f2937" : "#1f2937"}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+</button>
+
           </div>
         </div>
       </div>
@@ -199,7 +200,7 @@ const Header = () => {
       {/* Mobile menu */}
       <div
         ref={menuRef}
-        className="fixed top-0 left-0 z-40 w-full h-full bg-white flex flex-col justify-center items-center md:hidden opacity-0 translate-x-full"
+        className="fixed top-0 left-0 z-40 w-full h-screen overflow-hidden bg-white/90 backdrop-blur-md flex flex-col justify-center items-center md:hidden opacity-0 translate-x-full"
       >
         <div className="flex flex-col gap-4">
           {menuItems.map((item, index) => (

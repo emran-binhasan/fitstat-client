@@ -22,29 +22,33 @@ const Slider = () => {
   const descriptionCharsRef = useRef([]);
   const ctxRef = useRef(null);
 
+
+
+
+
   // Slide data
   const slides = [
     {
       id: 0,
       title: "Join Our Gym Today",
       description:
-        "Get fit with personalized workouts from top trainer. Achieve your fitness goals with expert guidance and state-of-the-art equipment.",
+        "Get fit with personalized workouts from top trainer. Achieve your fitness      goals with expert guidance and state-of-the-art equipment.",
       imgUrl:
-        "https://static.vecteezy.com/system/resources/previews/049/855/259/non_2x/nature-background-high-resolution-wallpaper-for-a-serene-and-stunning-view-photo.jpg",
+        "https://i.ibb.co.com/PG0nLvVn/2.jpg",
     },
     {
       id: 1,
       title: "Transform Your Body",
       description:
-        "Take your fitness journey to the next level with our advanced training programs tailored to your needs.",
-      imgUrl: "https://images6.alphacoders.com/568/568500.jpg",
+        "Take your fitness journey to the next level with our advanced training     programs tailored to your needs.",
+      imgUrl: "https://i.ibb.co.com/ZpycF8G9/1.jpg",
     },
     {
       id: 2,
       title: "Stay Motivated with Us",
       description:
-        "Push yourself every day with our community support and track your progress like never before.",
-      imgUrl: "https://source.unsplash.com/random/1600x900/?travel",
+        "Push yourself every day with our community support and track your      progress like never before.",
+      imgUrl: "https://i.ibb.co.com/ycVv68WQ/3.jpg",
     },
   ];
 
@@ -289,13 +293,13 @@ const Slider = () => {
         {/* Description with character animation */}
         <div
           ref={descriptionRef}
-          className="text-white/90 mt-4 text-base sm:text-lg md:text-xl font-light whitespace-pre-wrap max-w-xl"
+          className="text-white/90 mt-4 text-base sm:text-lg md:text-xl font-light whitespace-pre-wrap max-w-2xl"
         />
       </div>
 
       {/* Navigation Controls */}
       <div
-        className="absolute z-20 flex gap-y-4 md:gap-x-16 lg:gap-x-16
+        className="absolute z-20 flex gap-y-4 md:gap-x-14 lg:gap-x-14
         bottom-20 left-6 max-w-[calc(100%-80px)]
         md:bottom-16 md:left-1/2 md:-translate-x-1/2
         lg:bottom-20"

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from "react-helmet-async";
 import About from "./About";
-import FeaturedCards from "./FeaturedCards";
 import FeaturedClasses from "./FeaturedClasses";
 import LatestPosts from "./LatestPosts";
 import Newsletter from "./Newsletters";
@@ -58,26 +57,22 @@ const Home = () => {
       </div>
       
       <div ref={(el) => sectionRefs.current[1] = el}>
-        <FeaturedCards/>
-      </div>
-      
-      <div ref={(el) => sectionRefs.current[2] = el}>
         <About/>
       </div>
       
-      <div ref={(el) => sectionRefs.current[3] = el}>
+      <div ref={(el) => sectionRefs.current[2] = el}>
         <FeaturedClasses/>
       </div>
       
-      <div ref={(el) => sectionRefs.current[4] = el}>
+      <div ref={(el) => sectionRefs.current[3] = el}>
         <Reviews/>
       </div>
       
-      <div ref={(el) => sectionRefs.current[5] = el}>
+      <div ref={(el) => sectionRefs.current[4] = el}>
         <Newsletter/>
       </div>
       
-      <div ref={(el) => sectionRefs.current[6] = el}>
+      <div ref={(el) => sectionRefs.current[5] = el}>
         <LatestPosts/>
       </div>
       <TeamSection/>
