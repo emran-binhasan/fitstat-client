@@ -95,13 +95,15 @@ const ForumPost = ({ post }) => {
             {new Date(post.postedAt).toLocaleDateString()}
           </span>
         </div>
-        <h3 className="text-lg font-semibold text-gray-800">{post.title}</h3>
+       <div className="text-left">
+       <h3 className="text-lg font-semibold text-gray-800">{post.title}</h3>
         <p className="text-gray-600 text-sm">
           {isExpanded ? post.details : `${post.details.slice(0, 100)}...`}
         </p>
         <button onClick={toggleReadMore} className="text-blue-500 text-sm mt-2">
           {isExpanded ? "Read Less" : "Read More"}
         </button>
+       </div>
         <div className="mt-4 flex items-center">
           <span className="flex items-center border rounded-md shadow">
             <span className="flex gap-1 items-center px-2 py-1 rounded-md">{voteCount}</span>

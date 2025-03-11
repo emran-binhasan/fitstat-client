@@ -5,6 +5,7 @@ import { FaCalendarCheck } from "react-icons/fa";
 import { Reveal } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Others/Loading";
+import AnimatedTitle from "../../components/AnimatedTitle";
 
 const FeaturedClasses = () => {
   const axiosPublic = useAxiosPublic();
@@ -26,7 +27,7 @@ const FeaturedClasses = () => {
   return (
     <div className="py-8 ">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-6">Featured Classes</h2>
+      <AnimatedTitle title="Featured Classes"/>
 
         {/* Card Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
@@ -43,6 +44,7 @@ const FeaturedClasses = () => {
 
                   {/* Class details with line-clamp */}
                   <p className="text-gray-600 mb-4 line-clamp-4 text-justify">{classItem.details}</p>
+                  
 
                   {/* Author and Role */}
                   <div className="text-gray-600 mb-4">

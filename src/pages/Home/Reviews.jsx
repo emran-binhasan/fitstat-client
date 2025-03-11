@@ -6,6 +6,7 @@ import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import { Fade } from "react-awesome-reveal"; // Apply fade effect for smooth transition
 import Loading from "../Others/Loading";
+import AnimatedTitle from "../../components/AnimatedTitle";
 
 const Reviews = () => {
   const axiosPublic = useAxiosPublic();
@@ -48,7 +49,7 @@ const Reviews = () => {
   return (
     <div className="py-8 ">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-8">What Our Members Say</h2>
+        <AnimatedTitle title="What Our Members Say"/>
 
         {/* Keen Slider */}
         <div ref={sliderRef} className="keen-slider">
